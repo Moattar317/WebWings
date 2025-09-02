@@ -1,0 +1,179 @@
+/* src/components/Process/Process.css */
+.process {
+  padding: 1rem 0;
+  background: linear-gradient(45deg, rgba(0, 212, 255, 0.02) 0%, transparent 50%);
+  position: relative;
+  overflow: hidden;
+}
+
+.process::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient( rgb(36, 37, 37), rgb(14, 15, 15));
+  pointer-events: none;
+}
+
+.process-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.process-timeline {
+  position: relative;
+  margin-top: 4rem;
+}
+
+.process-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease;
+}
+
+.process-step.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.process-step:nth-child(even) {
+  flex-direction: row-reverse;
+  transform: translateX(50px);
+}
+
+.process-step:nth-child(even).animate {
+  transform: translateX(0);
+}
+
+.process-step::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.step-icon {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.step-icon span {
+  font-size: 2.5rem;
+}
+
+.step-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+}
+
+.step-content::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.process-step:nth-child(odd) .step-content::before {
+  left: -15px;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent rgba(255, 255, 255, 0.1) transparent transparent;
+}
+
+.process-step:nth-child(even) .step-content::before {
+  right: -15px;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.1);
+}
+
+.step-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #00d4ff;
+}
+
+.step-content p {
+  line-height: 1.6;
+  opacity: 0.9;
+  color: white;
+}
+
+.step-connector {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, #00d4ff, transparent);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .process-step {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+    transform: translateY(30px) !important;
+  }
+
+  .process-step.animate {
+    transform: translateY(0) !important;
+  }
+
+  .process-step::before {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-bottom: 1rem;
+  }
+
+  .step-content::before {
+    display: none;
+  }
+
+  .step-connector {
+    left: 50%;
+    top: auto;
+    bottom: -50px;
+    height: 50px;
+  }
+}
