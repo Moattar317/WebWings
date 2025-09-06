@@ -1,6 +1,8 @@
 // src/components/Header/Header.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './Header.css';
+
+import { Link,useLocation} from 'react-router-dom';
 import logo from '../assets/webwings_logo.png';
 import { 
   FiLayers, 
@@ -22,6 +24,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const dropdownRef = useRef(null);
+  const location = useLocation();
 
   // Services dropdown data with icons
   const services = [
@@ -73,6 +76,9 @@ dropdownTriggers.forEach(trigger => {
   });
 });
 
+const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
   // Close mobile menu when a link is clicked
   const handleNavClick = () => {
     if (isMobileMenuOpen) {
@@ -144,10 +150,14 @@ dropdownTriggers.forEach(trigger => {
             About
           </a>
           
-          <a href="#contact" onClick={handleNavClick}>
+         <Link 
+            to="/contact" 
+            className={`nav-link ${isActive('/contact')}`}
+            onClick={handleNavClick}
+          >
             <FiMail className="nav-icon" />
             Contact
-          </a>
+          </Link>
         </nav>
 
         <button 

@@ -1,32 +1,30 @@
 // src/App.jsx
 
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Process from './components/Process';
 
-import About from './components/About';
-import Stats from './components/Stats';
-import TechStack from './components/TechStack';
-import Testimonials from './components/Testimonials';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 import Footer from './components/Footer';
+import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
   return (
+     <Router>
     <div className="App">
       <Header />
-      <Hero />
-      <Services />
-      <Process />
-      
-      <About />
-      <Stats />
-      <TechStack />
-      <Testimonials />
+      <div className='maincontent'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} /> 
+        </Routes>
+
+      </div>
       
       <Footer />
     </div>
+    </Router>
   );
 }
 

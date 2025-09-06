@@ -1,7 +1,7 @@
 // src/components/About/About.jsx
 import React, { useRef, useEffect, useState } from 'react';
 import './About.css';
-import { FiArrowRight } from 'react-icons/fi';
+
 
 // Import your icon images
 import missionIcon from '../assets/ou.png'; // Replace with your actual path
