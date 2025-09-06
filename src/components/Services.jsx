@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Services.css';
-import i1 from "../assets/s1.png"
-import i2 from "../assets/s3.png"
-import i3 from "../assets/s2.png"
-import i4 from "../assets/s4.png"
-import i5 from "../assets/s6.png"
-import i6 from "../assets/s7.png"
+import i1 from "../assets/s1.png";
+import i2 from "../assets/s3.png";
+import i3 from "../assets/s2.png";
+import i4 from "../assets/s4.png";
+import i5 from "../assets/s6.png";
+import i6 from "../assets/s7.png";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);
@@ -16,41 +16,41 @@ const Services = () => {
   const headerRef = useRef(null);
   const itemsRef = useRef([]);
 
-   const services = [
+  const services = [
     {
-      icon: "🌐",
+      icon: i1,
       title: "Website Development",
       subtitle: "Custom Website Design",
       description: "We specialize in crafting professional, custom-designed websites tailored to your brand. Each layout is built for responsiveness, user experience, and strong digital impact.",
       features: ["E-Commerce Solutions", "CMS Integration", "Responsive Design"],
-      color: "#1a3358ff"
+      color: "#3c5d8dff"
     },
     {
-      icon: "📱",
+      icon: i2,
       title: "App Development", 
       subtitle: "Custom App Development",
       description: "We develop mobile apps tailored to your business scalable, functional, and built to deliver seamless experiences across Android and iOS platforms.",
       features: ["User-Friendly Interfaces", "Maintenance & Updates", "Cross-Platform"],
-      color: "#0d5c41ff"
+      color: "#b180a5ff"
     },
     {
-      icon: "💻",
+      icon: i3,
       title: "Software Development",
       subtitle: "Custom Software Solutions", 
       description: "We build tailored software that fits your business model whether it's internal tools, automation, or specialized platforms that streamline your workflow.",
       features: ["API & System Integration", "Scalable Architecture", "Custom Solutions"],
-      color: "#3e305eff"
+      color: "#66568bff"
     },
     {
-      icon: "📈",
+      icon: i4,
       title: "Digital Marketing",
       subtitle: "Social Media Strategy",
       description: "We plan and execute platform-specific strategies to boost your brand presence, grow engagement, and convert followers into loyal customers.",
       features: ["Paid Advertising Campaigns", "SEO Content Marketing", "Brand Strategy"],
-      color: "#744b05ff"
+      color: "#b19058ff"
     },
     {
-      icon: "📊",
+      icon: i5,
       title: "Data Analytics",
       subtitle: "Data Collection & Cleansing",
       description: "We gather raw data from multiple sources and clean it to remove duplicates, errors, and inconsistencies laying the foundation for reliable analysis.",
@@ -58,7 +58,7 @@ const Services = () => {
       color: "#976464ff"
     },
     {
-      icon: "🚀",
+      icon: i6,
       title: "Digital Transformation",
       subtitle: "Predictive Analytics",
       description: "Leverage machine learning and statistical models to forecast trends, customer behavior, and business outcomes with greater accuracy.",
@@ -123,8 +123,7 @@ const Services = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
     >
-      {/* background stuff unchanged... */}
-  <div className="services-background">
+      <div className="services-background">
         <div className="light-gradient-mesh"></div>
         <div className="floating-particles">
           {[...Array(15)].map((_, i) => (
@@ -139,10 +138,8 @@ const Services = () => {
             }}></div>
           ))}
         </div>
-           {/* Subtle grid lines */}
         <div className="light-grid-lines"></div>
         
-        {/* Floating shapes with light colors */}
         <div className="floating-shapes">
           <div className="light-shape light-shape-1"></div>
           <div className="light-shape light-shape-2"></div>
@@ -151,7 +148,6 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Mouse follower effect */}
       <div 
         className="mouse-follower" 
         style={{ 
@@ -161,8 +157,8 @@ const Services = () => {
           opacity: 0.1
         }}
       ></div>
+      
       <div className="services-container">
-        {/* Header with scale-down effect */}
         <div
           className={`section-header ${headerVisible ? 'visible' : ''}`}
           ref={headerRef}
@@ -174,8 +170,8 @@ const Services = () => {
               style={{ backgroundColor: services[activeService].color }}
             ></div>
           </div>
-          <h2>Our Services</h2>
-          <p>Redefining innovation possibilities impact across the globe</p>
+          <h2 className='section-title'>Our Services</h2>
+          <p className='section-subtitle'>Redefining innovation possibilities impact across the globe</p>
         </div>
 
         <div className="services-display">
@@ -191,14 +187,15 @@ const Services = () => {
                 onClick={() => setActiveService(index)}
                 style={{ '--service-color': service.color }}
               >
-                <div className="selector-icon">{service.icon}</div>
+                <div className="selector-icon">
+                  <img src={service.icon} alt={service.title} />
+                </div>
                 <span>{service.title}</span>
                 <div className="selector-highlight"></div>
               </div>
             ))}
           </div>
 
-          {/* Main service display with dynamic border color */}
           <div 
             className="service-showcase"
             style={{ 
@@ -210,7 +207,7 @@ const Services = () => {
               <div className="showcase-header">
                 <div className="service-icon-large">
                   <div className="icon-backdrop"></div>
-                  {services[activeService].icon}
+                  <img src={services[activeService].icon} alt={services[activeService].title} />
                 </div>
                 <div className="service-titles">
                   <h3>{services[activeService].title}</h3>
@@ -233,15 +230,7 @@ const Services = () => {
                 ))}
               </div>
               
-              <button className="cta-button" style={{ backgroundColor: services[activeService].color }}>
-                <span>Learn More</span>
-                <div className="button-arrow">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div className="button-hover-effect"></div>
-              </button>
+              
             </div>
             
             <div className="showcase-visual">
@@ -251,18 +240,22 @@ const Services = () => {
                   style={{ backgroundColor: services[activeService].color }}
                 >
                   <div className="visual-inner">
-                    {services[activeService].icon}
+                    <img src={services[activeService].icon} alt={services[activeService].title} />
                   </div>
                 </div>
-                <div className="visual-orbits">
-                  <div className="orbit orbit-1" style={{borderColor: `${services[activeService].color}20`}}></div>
-                  <div className="orbit orbit-2" style={{borderColor: `${services[activeService].color}20`}}></div>
-                  <div className="orbit orbit-3" style={{borderColor: `${services[activeService].color}20`}}></div>
-                </div>
+               
               </div>
+              <button className="cta-button" >
+                <span>Learn More</span>
+                <div className="button-arrow">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="button-hover-effect"></div>
+              </button>
             </div>
           </div>
-          {/* service-showcase unchanged */}
         </div>
       </div>
     </section>

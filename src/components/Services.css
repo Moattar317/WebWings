@@ -20,7 +20,6 @@
   z-index: 0;
 }
 
-/* Light gradient mesh background */
 .light-gradient-mesh {
   position: absolute;
   width: 100%;
@@ -33,7 +32,6 @@
   opacity: 0.5;
 }
 
-/* Floating particles */
 .floating-particles {
   position: absolute;
   width: 100%;
@@ -68,20 +66,18 @@
   }
 }
 
-/* Light grid lines effect */
 .light-grid-lines {
   position: absolute;
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.5) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
 }
 
-/* Light floating shapes */
 .floating-shapes {
   position: absolute;
   width: 100%;
@@ -150,7 +146,7 @@
   height: 60px;
   border-radius: 50%;
   filter: blur(10px);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50);
   z-index: 0;
   transition: width 0.3s, height 0.3s, opacity 0.3s;
   pointer-events: none;
@@ -191,7 +187,7 @@
   box-shadow: 0 0 15px currentColor;
 }
 
-.section-header h2 {
+.section-header .section-title {
   font-size: clamp(3rem, 6vw, 4rem);
   font-weight: 800;
   margin-bottom: 1rem;
@@ -201,7 +197,7 @@
   background-clip: text;
 }
 
-.section-header p {
+.section-header .section-subtitle {
   font-size: 1.25rem;
   color: #494c50;
   max-width: 600px;
@@ -275,15 +271,30 @@
 }
 
 .selector-icon {
-  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
   margin-right: 1rem;
   transition: transform 0.3s ease;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selector-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
 .selector-item.active .selector-icon {
   transform: scale(1.2);
-  filter: drop-shadow(0 0 8px var(--service-color));
+}
+
+.selector-item.active .selector-icon img {
+  filter: grayscale(0%) drop-shadow(0 0 8px var(--service-color));
 }
 
 .selector-item span {
@@ -306,7 +317,8 @@
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
   align-items: center;
-  min-height: 500px;
+  min-height: 550px; /* Fixed height for all cards */
+  height: 550px; /* Ensures consistent height */
   border: 4px solid #4284c7;
   position: relative;
   overflow: hidden;
@@ -334,25 +346,32 @@
 }
 
 .service-icon-large {
-  font-size: 3rem;
+  width: 80px;
+  height: 80px;
   margin-right: 1.5rem;
-  color: var(--active-color);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+}
+
+.service-icon-large img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  z-index: 2;
+  position: relative;
 }
 
 .icon-backdrop {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 20px;
   background: var(--active-color);
   opacity: 0.1;
-  z-index: -1;
+  z-index: 1;
+  transform: rotate(45deg);
 }
 
 .service-titles h3 {
@@ -373,6 +392,8 @@
   line-height: 1.7;
   color: #64748b;
   margin-bottom: 2rem;
+  max-height: 90px;
+  overflow: hidden;
 }
 
 .service-features-grid {
@@ -419,12 +440,13 @@
 .cta-button {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   border-radius: 50px;
   color: white;
   font-weight: 600;
+  background: #134a61;
   border: none;
+  align-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -471,18 +493,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .visual-container {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 280px;
+  height: 280px;
 }
 
 .visual-element {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -490,21 +514,71 @@
   position: relative;
   z-index: 2;
   box-shadow: 0 0 30px var(--active-color);
+  transform: rotate(45deg);
+  overflow: hidden;
 }
 
 .visual-inner {
-  font-size: 4rem;
-  animation: rotate 10s infinite linear;
+  transform: rotate(-45deg);
+  width: 100px;
+  height: 100px;
 }
 
-.visual-orbits {
-  position: absolute;
-  top: 0;
-  left: 0;
+.visual-inner img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  
 }
 
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+  border-radius: 50%;
+  animation: orbitRotate 20s infinite linear;
+}
+
+.orbit-1 {
+  width: 220px;
+  height: 220px;
+  animation-duration: 25s;
+}
+
+.orbit-2 {
+  width: 260px;
+  height: 260px;
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+
+.orbit-3 {
+  width: 300px;
+  height: 300px;
+  animation-duration: 35s;
+}
+
+@keyframes orbitRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(45deg) scale(1.05);
+    opacity: 0.9;
+  }
+}
 
 /* Header scale in/out */
 .section-header {
@@ -528,29 +602,6 @@
   opacity: 1;
 }
 
-
-@keyframes orbitRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.9;
-  }
-}
-
-
-
 @media (max-width: 1024px) {
   .services-display {
     grid-template-columns: 1fr;
@@ -561,6 +612,8 @@
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+    height: auto;
+    min-height: auto;
   }
   
   .showcase-header {
@@ -575,6 +628,10 @@
   
   .service-features-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .service-description {
+    max-height: none;
   }
 }
 
@@ -604,6 +661,7 @@
   }
   
   .visual-inner {
-    font-size: 3rem;
+    width: 60px;
+    height: 60px;
   }
 }

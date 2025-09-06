@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
-import gif1 from "../assets/g2.gif"
-import gif2 from "../assets/g1.gif"
+import video1 from "../assets/App-Design-unscreen.gif" // Add your first video file
+import video2 from "../assets/Mobile App Development.mp4" // Add your second video file
 import gif3 from "../assets/g3.gif"
 
 const Hero = () => {
@@ -12,20 +12,22 @@ const Hero = () => {
       title: "We reimagine tomorrow",
       subtitle: "Empowering Business with Custom tech Solutions",
       description: "Custom digital solutions that solve real business challenges",
-      gif: gif1,
+      media: video1,
+      mediaType: "gif",
       cta: "GET IN TOUCH",
       theme: {
         primary: "#3681a3ff",
         secondary: "#1d89b4ff",
         accent: "#194252ff",
-        overlay: "rgba(102, 197, 234, 0.7)"
+        overlay: "rgba(151, 210, 233, 0.7)"
       },
     },
     {
       title: "AI that dares to disrupt", 
       subtitle: "Hyper-personalization at the pace of your thoughts",
       description: "Leveraging cutting-edge technology for innovative solutions",
-      gif: gif2,
+      media: video2,
+      mediaType: "video",
       cta: "LEARN MORE",
       theme: {
         primary: "#052f4bff",
@@ -38,7 +40,8 @@ const Hero = () => {
       title: "Code that transforms",
       subtitle: "Building the digital infrastructure of tomorrow",
       description: "From concept to deployment, we craft exceptional experiences",
-      gif: gif3,
+      media: gif3,
+      mediaType: "gif",
       cta: "VIEW PROJECTS",
       theme: {
         primary: "#1e8bca56",
@@ -133,15 +136,15 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-visual">
-                  <div className="gif-container">
-                    <div className="gif-backdrop"></div>
+                  <div className="media-container">
+                    <div className="media-backdrop"></div>
                     <div 
-                      className="gif-glow"
+                      className="media-glow"
                       style={{
                         background: `radial-gradient(circle, ${slide.theme.accent}30, transparent 70%)`
                       }}
                     ></div>
-                    <div className="gif-border">
+                    <div className="media-border">
                       <div 
                         style={{
                           position: 'absolute',
@@ -151,14 +154,28 @@ const Hero = () => {
                         }}
                       ></div>
                     </div>
-                    <img 
-                      src={slide.gif} 
-                      alt="Animation" 
-                      className="hero-gif"
-                      style={{
-                        filter: `drop-shadow(0 20px 40px ${slide.theme.accent}30) hue-rotate(${index * 20}deg) saturate(1.1)`
-                      }}
-                    />
+                    {slide.mediaType === "video" ? (
+                      <video 
+                        src={slide.media} 
+                        className="hero-media"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        style={{
+                          filter: `drop-shadow(0 20px 40px ${slide.theme.accent}30) hue-rotate(${index * 20}deg) saturate(1.1)`
+                        }}
+                      />
+                    ) : (
+                      <img 
+                        src={slide.media} 
+                        alt="Animation" 
+                        className="hero-media"
+                        style={{
+                          filter: `drop-shadow(0 20px 40px ${slide.theme.accent}30) hue-rotate(${index * 20}deg) saturate(1.1)`
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

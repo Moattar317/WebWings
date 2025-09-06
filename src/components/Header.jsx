@@ -63,6 +63,16 @@ const Header = () => {
     }
   };
 
+  const dropdownTriggers = document.querySelectorAll(".dropdown-trigger");
+
+dropdownTriggers.forEach(trigger => {
+  trigger.addEventListener("click", (e) => {
+    e.preventDefault();
+    const menu = trigger.nextElementSibling;
+    menu.classList.toggle("active");
+  });
+});
+
   // Close mobile menu when a link is clicked
   const handleNavClick = () => {
     if (isMobileMenuOpen) {
@@ -86,33 +96,36 @@ const Header = () => {
             onMouseLeave={() => !isMobileMenuOpen && setActiveDropdown(null)}
           >
             <a 
-              href="#services" 
-              className="dropdown-trigger"
-              onClick={(e) => {
-                if (isMobileMenuOpen) {
-                  e.preventDefault();
-                  toggleDropdown('services');
-                }
-                handleNavClick();
-              }}
-            >
-              <FiCheckSquare className="nav-icon" />
-              Services
-              <FiChevronDown className="dropdown-arrow" />
-            </a>
+  href="#services" 
+  className="dropdown-trigger"
+  onClick={(e) => {
+    if (isMobileMenuOpen) {
+      e.preventDefault();
+      toggleDropdown('services'); // ✅ toggles dropdown only
+    }
+  }}
+>
+  <FiCheckSquare className="nav-icon" />
+  Services
+  <FiChevronDown 
+    className={`dropdown-arrow ${activeDropdown === 'services' ? 'open' : ''}`} 
+  />
+</a>
+
             
             <div className={`dropdown-menu ${activeDropdown === 'services' ? 'active' : ''}`}>
-              {services.map((service, index) => (
-                <a 
-                  key={index} 
-                  href={service.link}
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                  onClick={handleNavClick}
-                >
-                  <span className="dropdown-icon">{service.icon}</span>
-                  {service.name}
-                </a>
-              ))}
+             {services.map((service, index) => (
+  <a 
+    key={index} 
+    href={service.link}
+    style={{ animationDelay: `${index * 0.05}s` }}
+    onClick={handleNavClick} // ✅ closes menu when selecting a service
+  >
+    <span className="dropdown-icon">{service.icon}</span>
+    {service.name}
+  </a>
+))}
+
             </div>
           </div>
 

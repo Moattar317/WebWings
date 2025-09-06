@@ -9,7 +9,6 @@ import About from './components/About';
 import Stats from './components/Stats';
 import TechStack from './components/TechStack';
 import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -25,7 +24,7 @@ function App() {
       <Stats />
       <TechStack />
       <Testimonials />
-      <Contact />
+      
       <Footer />
     </div>
   );

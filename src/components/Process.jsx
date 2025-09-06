@@ -51,10 +51,31 @@ const Process = () => {
     return () => observer.disconnect();
   }, []);
 
-  return (
+  return (    
     <section id="process" className="process" ref={processRef}>
-      <div className="process-container">
-        <div className="section-header">
+      <div className="process-container overflow-hidden">
+        <div className="light-gradient-mesh"></div>
+        <div className="floating-particles">
+          {[...Array(15)].map((_, i) => (
+            <div key={i} className="particle" style={{
+              '--delay': `${i * 0.5}s`,
+              '--size': `${Math.random() * 6 + 4}px`,
+              '--opacity': `${Math.random() * 0.2 + 0.05}`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `-${Math.random() * 20}s`,
+              backgroundColor: `rgba(59, 130, 246, 0.2)`
+            }}></div>
+          ))}
+        </div>
+        <div className="light-grid-lines"></div>
+        
+        <div className="floating-shapes">
+          <div className="light-shape light-shape-1"></div>
+          
+          <div className="light-shape light-shape-4"></div>
+        </div>
+        <div className="section-header relative z-10">
           <h2>Our Process</h2>
           <p>A systematic approach to delivering exceptional digital solutions</p>
         </div>

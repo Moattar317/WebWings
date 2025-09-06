@@ -1,5 +1,5 @@
 // src/components/Testimonials/Testimonials.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -32,7 +32,7 @@ const Testimonials = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [testimonials.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -48,8 +48,15 @@ const Testimonials = () => {
 
   return (
     <section className="testimonials">
+      <div className="floating-shapes">
+          <div className="light-shape light-shape-1"></div>
+          <div className="light-shape light-shape-2"></div>
+          <div className="light-shape light-shape-3"></div>
+          <div className="light-shape light-shape-4"></div>
+        </div>
       <div className="testimonials-container">
-        <div className="section-header">
+        
+        <div className="sectionn-header">
           <h2>What Our Clients Say</h2>
           <p>Real feedback from our valued partners</p>
         </div>
@@ -96,6 +103,7 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+      
     </section>
   );
 };
