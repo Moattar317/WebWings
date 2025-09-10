@@ -66,9 +66,9 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Contact Info</h3>
             <div className="contact-info">
-              <p>📧 info@webwings</p>
+              <p>📧 info@webwings.com</p>
               <p>📱 +92 317 4030303</p>
-              <p>🌐 webwings.com.pk</p>
+              <p>🌐 www.webwings.com.pk</p>
               <p>📍 Pakistan</p>
             </div>
           </div>

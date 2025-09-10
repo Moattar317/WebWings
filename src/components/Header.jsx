@@ -1,8 +1,7 @@
 // src/components/Header/Header.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './Header.css';
-
-import { Link,useLocation} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/webwings_logo.png';
 import { 
   FiLayers, 
@@ -66,19 +65,10 @@ const Header = () => {
     }
   };
 
-  const dropdownTriggers = document.querySelectorAll(".dropdown-trigger");
-
-dropdownTriggers.forEach(trigger => {
-  trigger.addEventListener("click", (e) => {
-    e.preventDefault();
-    const menu = trigger.nextElementSibling;
-    menu.classList.toggle("active");
-  });
-});
-
-const isActive = (path) => {
+  const isActive = (path) => {
     return location.pathname === path ? 'active' : '';
   };
+
   // Close mobile menu when a link is clicked
   const handleNavClick = () => {
     if (isMobileMenuOpen) {
@@ -87,51 +77,55 @@ const isActive = (path) => {
     }
   };
 
+  // Handle services dropdown click (for mobile)
+  const handleServicesClick = (e) => {
+    if (isMobileMenuOpen) {
+      e.preventDefault();
+      toggleDropdown('services');
+    }
+  };
+
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
-        <div className="logo">
-          <img src={logo} alt="WebWings" />
-        </div>
+        <Link to="/" className="logo-link" onClick={handleNavClick}>
+          <div className="logo">
+            <img src={logo} alt="WebWings" />
+          </div>
+        </Link>
         
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
           <div 
             className="nav-item dropdown-container"
             ref={dropdownRef}
-            onMouseEnter={() => !isMobileMenuOpen && toggleDropdown('services')}
+            onMouseEnter={() => !isMobileMenuOpen && setActiveDropdown('services')}
             onMouseLeave={() => !isMobileMenuOpen && setActiveDropdown(null)}
           >
             <a 
-  href="#services" 
-  className="dropdown-trigger"
-  onClick={(e) => {
-    if (isMobileMenuOpen) {
-      e.preventDefault();
-      toggleDropdown('services'); // ✅ toggles dropdown only
-    }
-  }}
->
-  <FiCheckSquare className="nav-icon" />
-  Services
-  <FiChevronDown 
-    className={`dropdown-arrow ${activeDropdown === 'services' ? 'open' : ''}`} 
-  />
-</a>
-
+              href="#services" 
+              className="dropdown-trigger"
+              onClick={handleServicesClick}
+            >
+              <FiCheckSquare className="nav-icon" />
+              Services
+              <FiChevronDown 
+                className={`dropdown-arrow ${activeDropdown === 'services' ? 'open' : ''}`} 
+              />
+            </a>
             
             <div className={`dropdown-menu ${activeDropdown === 'services' ? 'active' : ''}`}>
-             {services.map((service, index) => (
-  <a 
-    key={index} 
-    href={service.link}
-    style={{ animationDelay: `${index * 0.05}s` }}
-    onClick={handleNavClick} // ✅ closes menu when selecting a service
-  >
-    <span className="dropdown-icon">{service.icon}</span>
-    {service.name}
-  </a>
-))}
-
+              {services.map((service, index) => (
+                <a 
+                  key={index} 
+                  href={service.link}
+                  className="dropdown-item"
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                  onClick={handleNavClick}
+                >
+                  <span className="dropdown-icon">{service.icon}</span>
+                  {service.name}
+                </a>
+              ))}
             </div>
           </div>
 
@@ -140,17 +134,17 @@ const isActive = (path) => {
             Process
           </a>
           
-          <a href="#portfolio" onClick={handleNavClick}>
+          <Link to="/portfolio" className="nav-link" onClick={handleNavClick}>
             <FiBriefcase className="nav-icon" />
             Portfolio
-          </a>
+          </Link>
           
           <a href="#about" onClick={handleNavClick}>
             <FiUser className="nav-icon" />
             About
           </a>
           
-         <Link 
+          <Link 
             to="/contact" 
             className={`nav-link ${isActive('/contact')}`}
             onClick={handleNavClick}

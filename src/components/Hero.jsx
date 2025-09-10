@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import './Hero.css';
-import video1 from "../assets/App-Design-unscreen.gif" // Add your first video file
-import video2 from "../assets/Mobile App Development.mp4" // Add your second video file
-import gif3 from "../assets/g3.gif"
+import gif1 from "../assets/g21.gif";
+import gif2 from "../assets/g19.gif";
+import gif3 from "../assets/g3.gif";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  
 
   const slides = [
     {
       title: "We reimagine tomorrow",
       subtitle: "Empowering Business with Custom tech Solutions",
       description: "Custom digital solutions that solve real business challenges",
-      media: video1,
+      media: gif1,
       mediaType: "gif",
       cta: "GET IN TOUCH",
       theme: {
-        primary: "#3681a3ff",
-        secondary: "#1d89b4ff",
-        accent: "#194252ff",
-        overlay: "rgba(151, 210, 233, 0.7)"
+        primary: "#163a4bff",
+        secondary: "#18343fff",
+        accent: "#a2cce0ff",
+        overlay: "rgba(10, 69, 92, 0.7)"
       },
     },
     {
       title: "AI that dares to disrupt", 
       subtitle: "Hyper-personalization at the pace of your thoughts",
       description: "Leveraging cutting-edge technology for innovative solutions",
-      media: video2,
-      mediaType: "video",
+      media: gif2,
+      mediaType: "gif",
       cta: "LEARN MORE",
       theme: {
-        primary: "#052f4bff",
-        secondary: "#24586dff",
-        accent: "#a7a4a4ff",
-        overlay: "rgba(35, 80, 105, 0.7)"
+        primary: "#085ea3ff",
+        secondary: "#052f61ff",
+        accent: "#d5dadaff",
+        overlay: "rgba(22, 67, 92, 0.7)"
       },
     },
     {
@@ -51,6 +52,63 @@ const Hero = () => {
       }
     }
   ];
+
+ // Split text into spans for animation
+const splitText = (text, type, gradient) => {
+  return text.split(' ').map((word, i) => (
+    <span 
+      key={i} 
+      className={`${type}-word`}
+      style={{ 
+        display: "inline-block",
+        background: gradient,
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        animationDelay: `${i * 0.1}s` 
+      }}
+    >
+      {word}&nbsp;
+    </span>
+  ));
+};
+
+
+  // Typewriter effect component
+  const TypewriterText = ({ text,  className = "" }) => {
+    const [displayText, setDisplayText] = useState('');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [speed, setSpeed] = useState(100);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        if (!isDeleting && currentIndex < text.length) {
+          setDisplayText(text.substring(0, currentIndex + 1));
+          setCurrentIndex(currentIndex + 1);
+          setSpeed(100);
+        } else if (isDeleting && currentIndex > 0) {
+          setDisplayText(text.substring(0, currentIndex - 1));
+          setCurrentIndex(currentIndex - 1);
+          setSpeed(50);
+        }
+
+        if (currentIndex === text.length) {
+          setTimeout(() => setIsDeleting(true), 2000);
+        } else if (currentIndex === 0 && isDeleting) {
+          setIsDeleting(false);
+        }
+      }, speed);
+
+      return () => clearTimeout(timer);
+    }, [text, currentIndex, isDeleting, speed]);
+
+    return (
+      <span className={`typewriter-text ${className}`}>
+        {displayText}
+        <span className="typewriter-cursor">|</span>
+      </span>
+    );
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -96,25 +154,22 @@ const Hero = () => {
                   <span className="data-flow df1" />
                   <span className="data-flow df2" />
                   <span className="data-flow df3" />
-                  <span className="orb o1" />
-                  <span className="orb o2" />
                 </div>
 
                 <div className="hero-text">
                   <h1 className="hero-title">
-                    <span 
-                      className="title-line"
-                      style={{
-                        background: `linear-gradient(135deg, #ffffff, ${slide.theme.accent}, ${slide.theme.primary})`,
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                      }}
-                    >
-                      {slide.title}
-                    </span>
+                   {splitText(
+    slide.title,
+    "title",
+    `linear-gradient(135deg, #ffffff, ${slide.theme.accent}, ${slide.theme.primary})`
+  )}
                   </h1>
-                  <h2 className="hero-subtitle">{slide.subtitle}</h2>
+                  <h2 className="hero-subtitle">
+                    <TypewriterText 
+                      text={slide.subtitle} 
+                      className="typewriter-subtitle"
+                    />
+                  </h2>
                   <p className="hero-description">{slide.description}</p>
                   <button 
                     className="hero-cta"
@@ -137,7 +192,6 @@ const Hero = () => {
 
                 <div className="hero-visual">
                   <div className="media-container">
-                    <div className="media-backdrop"></div>
                     <div 
                       className="media-glow"
                       style={{
@@ -162,18 +216,12 @@ const Hero = () => {
                         muted
                         loop
                         playsInline
-                        style={{
-                          filter: `drop-shadow(0 20px 40px ${slide.theme.accent}30) hue-rotate(${index * 20}deg) saturate(1.1)`
-                        }}
                       />
                     ) : (
                       <img 
                         src={slide.media} 
                         alt="Animation" 
                         className="hero-media"
-                        style={{
-                          filter: `drop-shadow(0 20px 40px ${slide.theme.accent}30) hue-rotate(${index * 20}deg) saturate(1.1)`
-                        }}
                       />
                     )}
                   </div>

@@ -101,17 +101,21 @@
 /* Dropdown Styles */
 .dropdown-container {
   position: relative;
+  visibility: visible;
 }
 
 .dropdown-trigger {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+  visibility: visible;
+  cursor: pointer;
 }
 
 .dropdown-arrow {
   transition: transform 0.3s ease;
   font-size: 0.8rem;
+  visibility: visible;
   margin-left: 0.2rem;
 }
 
@@ -129,11 +133,10 @@
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 0;
-  opacity: 0;
-  visibility: hidden;
   transform: translateY(10px);
   transition: all 0.3s ease;
   z-index: 1000;
+  visibility: visible;
   border: 2px solid rgba(11, 86, 148, 0.1);
   margin-top: 0.5rem;
 }
@@ -153,31 +156,11 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  opacity: 0;
-  transform: translateX(-10px);
-  gap: 0.8rem;
-  font-size: 0.95rem;
-}
-
-.dropdown-menu.active a {
   opacity: 1;
   transform: translateX(0);
-  animation: slideInRight 0.3s ease forwards;
-}
-
-.dropdown-menu a::before {
-  content: '';
-  position: absolute;
-  left: -100%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-  transition: left 0.5s ease;
-}
-
-.dropdown-menu a:hover::before {
-  left: 100%;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  animation: none !important;
 }
 
 .dropdown-menu a:hover {
@@ -195,43 +178,6 @@
 
 .dropdown-menu a:hover .dropdown-icon {
   transform: scale(1.2);
-}
-
-/* CTA Button */
-.nav-cta {
-  margin-left: 1rem;
-}
-
-.cta-button {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  padding: 0.6rem 1.2rem 0.6rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-  color: white;
-  gap: 0.8rem;
-}
-
-.cta-button::after {
-  display: none;
-}
-
-.cta-arrow {
-  transition: transform 0.3s ease;
-}
-
-.cta-button:hover .cta-arrow {
-  transform: translateX(3px);
 }
 
 /* Mobile Menu Button */
@@ -286,61 +232,6 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Animations */
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes slideInScale {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Mobile menu entrance animation */
-@keyframes navItemFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 /* Mobile Responsive */
 @media (max-width: 968px) {
   .header-container {
@@ -354,88 +245,43 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(135deg, rgba(9, 144, 197, 0.8), rgba(253, 254, 255, 0.4));
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(25px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2.5rem;
-    transform: scale(0.8);
+    gap: 1.5rem;
+    transform: translateX(-100%);
     opacity: 1;
     visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s ease;
     z-index: 1001;
     padding: 2rem;
   }
 
   .nav.nav-open {
-    transform: scale(1);
+    transform: translateX(0);
     opacity: 1;
     visibility: visible;
   }
 
-  .nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-    z-index: -1;
-  }
-
   .nav a {
-    font-size: 1.4rem;
-    padding: 1.2rem 2rem;
-    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 1.5rem;
+    color: #0d6699;
     text-align: center;
     justify-content: center;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 2px solid white;
-    width: 280px;
-    transform: translateY(30px);
-    opacity: 0;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav.nav-open a {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .nav a:nth-child(1) { animation-delay: 0.1s; transition-delay: 0.1s; }
-  .nav a:nth-child(2) { animation-delay: 0.2s; transition-delay: 0.2s; }
-  .nav a:nth-child(3) { animation-delay: 0.3s; transition-delay: 0.3s; }
-  .nav a:nth-child(4) { animation-delay: 0.4s; transition-delay: 0.4s; }
-  .nav a:nth-child(5) { animation-delay: 0.5s; transition-delay: 0.5s; }
-
-  .nav a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.6s ease;
-  }
-
-  .nav a:hover::before {
-    left: 100%;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    width: 250px;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   }
 
   .nav a:hover {
-    background: rgba(59, 130, 246, 0.15);
-    
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
   }
 
   .nav a::after {
@@ -443,14 +289,15 @@
   }
 
   .nav-icon {
-    font-size: 1.3rem;
-    color: #f6f7f8;
+    font-size: 1.2rem;
+    color: #0d6699;
   }
 
-  /* Dropdown for mobile overlay */
+  /* Dropdown for mobile */
   .dropdown-container {
-    width: 280px;
+    width: 250px;
     position: relative;
+    visibility: visible;
   }
 
   .dropdown-trigger {
@@ -458,7 +305,7 @@
     width: 100%;
   }
 
-   .dropdown-menu {
+  .dropdown-menu {
     position: relative;
     top: 0;
     left: 0;
@@ -469,42 +316,28 @@
     margin-top: 0.5rem;
     padding: 0.5rem 0;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-    opacity: 0;
-    visibility: hidden;
     max-height: 0;
     overflow: hidden;
-    transform: translateY(-10px);
+    transform: translateY(0);
     transition: all 0.3s ease;
   }
 
   .dropdown-menu.active {
     opacity: 1;
     visibility: visible;
-    max-height: 500px; /* enough to expand */
-    transform: translateY(0);
+    max-height: 500px;
   }
 
   .dropdown-menu a {
-    opacity: 1;
-    transform: none;
     padding: 0.8rem 1rem;
     font-size: 0.95rem;
     color: #333;
   }
 
   .dropdown-menu a:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: #0d6699;
-  }
-  .dropdown-menu a:last-child {
-    border-bottom: none;
-  }
-
-  .dropdown-menu a:hover {
     background: rgba(59, 130, 246, 0.1);
     color: #0d6699;
-    padding-left: 2rem;
-    transform: translateX(5px);
+    padding-left: 1.5rem;
   }
 
   .dropdown-icon {
@@ -515,50 +348,6 @@
   .mobile-menu-btn {
     display: flex;
   }
-
-  .nav-cta {
-    margin: 2rem 0 0 0;
-    width: 280px;
-  }
-
-  .cta-button {
-    width: 100%;
-    justify-content: center;
-    padding: 1.2rem 2rem;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-  }
-
-  .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
-  }
-
-  /* Mobile menu backdrop */
-  .nav::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: -2;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .nav.nav-open::after {
-    opacity: 1;
-  }
-
-  /* Prevent body scroll when mobile menu is open */
-  body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -567,16 +356,11 @@
     min-height: 60px;
   }
   
-  .logo {
-    font-size: 1.3rem;
-  }
-  
   .logo img {
     height: 40px;
   }
 
   .nav {
-    max-width: 350px;
     padding: 80px 1.5rem 2rem;
   }
   
@@ -587,108 +371,6 @@
   .dropdown-menu a {
     padding: 0.8rem 1rem;
     font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 410px) {
-  .header-container {
-    padding: 0.8rem 1rem;
-    min-height: 55px;
-  }
-  
-  .logo {
-    font-size: 1.2rem;
-  }
-  
-  .logo img {
-    height: 35px;
-  }
-
-  .nav {
-    max-width: 50%;
-    padding: 70px 1rem 2rem;
-    gap: 1.5rem;
-  }
-  
-  .nav a {
-    font-size: 1rem;
-    padding: 0.8rem 0;
-  }
-
-  .dropdown-menu a {
-    padding: 0.7rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .cta-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .mobile-menu-btn {
-    width: 35px;
-    height: 35px;
-  }
-
-  .mobile-menu-btn span {
-    width: 20px;
-    height: 2px;
-  }
-}
-
-/* Landscape mobile devices */
-@media (max-width: 968px) and (orientation: landscape) and (max-height: 500px) {
-  .nav {
-    padding: 60px 2rem 1rem;
-    gap: 1rem;
-  }
-  
-  .nav a {
-    font-size: 1rem;
-    padding: 0.5rem 0;
-  }
-}
-
-/* High DPI screens */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .logo img {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Touch devices */
-@media (hover: none) and (pointer: coarse) {
-  .nav a:hover::after {
-    width: 0;
-  }
-  
-  .dropdown-container:hover .dropdown-arrow {
-    transform: none;
-  }
-  
-  .nav a:active {
-    background: rgba(59, 130, 246, 0.1);
-    border-radius: 8px;
-  }
-  
-  .dropdown-menu a:active {
-    background: rgba(59, 130, 246, 0.15);
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .header,
-  .logo,
-  .nav a,
-  .dropdown-menu,
-  .mobile-menu-btn span,
-  .dropdown-arrow {
-    transition: none;
-  }
-  
-  .dropdown-menu.active a {
-    animation: none;
+    visibility: visible;
   }
 }

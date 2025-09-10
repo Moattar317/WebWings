@@ -1,5 +1,6 @@
 // src/components/Testimonials/Testimonials.jsx
 import { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Testimonials.css';
 
 const Testimonials = () => {
@@ -34,46 +35,47 @@ const Testimonials = () => {
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
+  const goToSlide = (index) => setCurrentSlide(index);
 
-  const nextSlide = () => {
+  const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-  };
 
-  const prevSlide = () => {
+  const prevSlide = () =>
     setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
-    <section className="testimonials">
-      <div className="floating-shapes">
-          <div className="light-shape light-shape-1"></div>
-          <div className="light-shape light-shape-2"></div>
-          <div className="light-shape light-shape-3"></div>
-          <div className="light-shape light-shape-4"></div>
-        </div>
-      <div className="testimonials-container">
-        
-        <div className="sectionn-header">
+    <section className="testimonials py-5">
+      <div className="floating-shapes d-none d-md-block">
+        <div className="light-shape light-shape-1"></div>
+        <div className="light-shape light-shape-2"></div>
+        <div className="light-shape light-shape-3"></div>
+        <div className="light-shape light-shape-4"></div>
+      </div>
+
+      <div className="testimonials-container container">
+        {/* Section Header */}
+        <div className="sectionn-header text-center mb-4">
           <h2>What Our Clients Say</h2>
-          <p>Real feedback from our valued partners</p>
+          <p className="text-muted">Real feedback from our valued partners</p>
         </div>
 
-        <div className="testimonials-carousel">
-          <button className="carousel-btn prev" onClick={prevSlide}>
+        {/* Carousel */}
+        <div className="testimonials-carousel d-flex align-items-center justify-content-center">
+          <button className="carousel-btn prev btn btn-sm d-none d-md-block" onClick={prevSlide}>
             ←
           </button>
           
-          <div className="testimonials-wrapper">
+          <div className="testimonials-wrapper overflow-hidden w-100">
             <div 
-              className="testimonials-track"
+              className="testimonials-track d-flex"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="testimonial-slide">
-                  <div className="testimonial-card">
+                <div 
+                  key={index} 
+                  className="testimonial-slide col-12 col-md-10 col-lg-6 mx-auto"
+                >
+                  <div className="testimonial-card h-100">
                     <div className="quote-icon">"</div>
                     <p className="testimonial-text">{testimonial.text}</p>
                     <div className="testimonial-author">
@@ -88,22 +90,22 @@ const Testimonials = () => {
             </div>
           </div>
 
-          <button className="carousel-btn next" onClick={nextSlide}>
+          <button className="carousel-btn next btn btn-sm d-none d-md-block" onClick={nextSlide}>
             →
           </button>
         </div>
 
-        <div className="testimonials-dots">
+        {/* Dots */}
+        <div className="testimonials-dots mt-3 d-flex justify-content-center flex-wrap">
           {testimonials.map((_, index) => (
             <button
               key={index}
-              className={`dot ${currentSlide === index ? 'active' : ''}`}
+              className={`dot ${currentSlide === index ? 'active' : ''} mx-1`}
               onClick={() => goToSlide(index)}
             />
           ))}
         </div>
       </div>
-      
     </section>
   );
 };
