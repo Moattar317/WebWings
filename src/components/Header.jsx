@@ -1,7 +1,7 @@
 // src/components/Header/Header.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './Header.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/webwings_logo.png';
 import { 
   FiLayers, 
@@ -21,34 +21,23 @@ import {
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const timeoutRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // Services dropdown data with icons
+  // Services data
   const services = [
-    { name: "Website Development", link: "#web-dev", icon: <FiGlobe /> },
-    { name: "App Development", link: "#app-dev", icon: <FiSmartphone /> },
-    { name: "Software Development", link: "#software-dev", icon: <FiCode /> },
-    { name: "Digital Marketing", link: "#digital-marketing", icon: <FiTrendingUp /> },
-    { name: "Data Analytics", link: "#data-analytics", icon: <FiPieChart /> },
-    { name: "Digital Transformation", link: "#digital-transformation", icon: <FiRefreshCw /> },
+    { name: "Website Development", id: "services", icon: <FiGlobe /> },
+    { name: "App Development", id: "services", icon: <FiSmartphone /> },
+    { name: "Software Development", id: "services", icon: <FiCode /> },
+    { name: "Digital Marketing", id: "services", icon: <FiTrendingUp /> },
+    { name: "Data Analytics", id: "services", icon: <FiPieChart /> },
+    { name: "Digital Transformation", id: "services", icon: <FiRefreshCw /> },
   ];
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setActiveDropdown(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -57,106 +46,179 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleDropdown = (dropdownName) => {
-    if (activeDropdown === dropdownName) {
-      setActiveDropdown(null);
+  // Handle scroll to section when coming from other pages
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const timer = setTimeout(() => {
+        const element = document.getElementById(location.state.scrollTo);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        window.history.replaceState({}, document.title);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Navigate to section
+  const navigateToSection = (sectionId) => {
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     } else {
-      setActiveDropdown(dropdownName);
+      navigate('/', { state: { scrollTo: sectionId } });
     }
+    closeMobileMenu();
   };
 
-  const isActive = (path) => {
-    return location.pathname === path ? 'active' : '';
+  // Close mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setShowDropdown(false);
   };
 
-  // Close mobile menu when a link is clicked
-  const handleNavClick = () => {
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-      setActiveDropdown(null);
-    }
-  };
-
-  // Handle services dropdown click (for mobile)
+  // Handle services click
   const handleServicesClick = (e) => {
+    e.preventDefault();
     if (isMobileMenuOpen) {
-      e.preventDefault();
-      toggleDropdown('services');
+      setShowDropdown(!showDropdown);
+    } else {
+      navigateToSection('services');
     }
   };
+
+  // Desktop hover handlers
+  const handleMouseEnter = () => {
+    if (!isMobileMenuOpen) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setShowDropdown(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobileMenuOpen) {
+      timeoutRef.current = setTimeout(() => {
+        setShowDropdown(false);
+      }, 150);
+    }
+  };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
-        <Link to="/" className="logo-link" onClick={handleNavClick}>
+        {/* Logo */}
+        <Link to="/" className="logo-link" onClick={closeMobileMenu}>
           <div className="logo">
             <img src={logo} alt="WebWings" />
           </div>
         </Link>
         
+        {/* Navigation */}
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
+          {/* Services Dropdown */}
           <div 
-            className="nav-item dropdown-container"
+            className="dropdown-container"
             ref={dropdownRef}
-            onMouseEnter={() => !isMobileMenuOpen && setActiveDropdown('services')}
-            onMouseLeave={() => !isMobileMenuOpen && setActiveDropdown(null)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
-            <a 
-              href="#services" 
+            <button 
               className="dropdown-trigger"
               onClick={handleServicesClick}
             >
               <FiCheckSquare className="nav-icon" />
               Services
-              <FiChevronDown 
-                className={`dropdown-arrow ${activeDropdown === 'services' ? 'open' : ''}`} 
-              />
-            </a>
+              <FiChevronDown className={`dropdown-arrow ${showDropdown ? 'rotate' : ''}`} />
+            </button>
             
-            <div className={`dropdown-menu ${activeDropdown === 'services' ? 'active' : ''}`}>
-              {services.map((service, index) => (
-                <a 
-                  key={index} 
-                  href={service.link}
-                  className="dropdown-item"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                  onClick={handleNavClick}
-                >
-                  <span className="dropdown-icon">{service.icon}</span>
-                  {service.name}
-                </a>
-              ))}
-            </div>
+            <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
+  {services.map((service, index) => (
+    <a
+      key={index}
+      href={location.pathname === '/' ? `#${service.id}` : '/'}
+      className="dropdown-item"
+      onClick={e => {
+        e.preventDefault();
+        if (location.pathname === '/') {
+          // On homepage, scroll to section
+          const el = document.getElementById(service.id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        } else {
+          // On other pages, navigate to home and scroll after navigation
+          navigate('/', { state: { scrollTo: service.id } });
+        }
+        closeMobileMenu();
+        setShowDropdown(false);
+      }}
+    >
+      <span className="dropdown-icon">{service.icon}</span>
+      {service.name}
+    </a>
+  ))}
+</div>
           </div>
 
-          <a href="#process" onClick={handleNavClick}>
+          {/* Other Nav Items */}
+          <button 
+            className="nav-button"
+            onClick={() => navigateToSection('process')}
+          >
             <FiLayers className="nav-icon" />
             Process
-          </a>
+          </button>
+
           
-          <Link to="/portfolio" className="nav-link" onClick={handleNavClick}>
+          <Link 
+            to="/portfolio" 
+            className={`nav-Link ${isActive('/portfolio') ? 'active' : ''}`}
+            onClick={closeMobileMenu}
+          >
             <FiBriefcase className="nav-icon" />
             Portfolio
           </Link>
-          
-          <a href="#about" onClick={handleNavClick}>
+
+          <button 
+            className="nav-button"
+            onClick={() => navigateToSection('about')}
+          >
             <FiUser className="nav-icon" />
             About
-          </a>
+          </button>
           
           <Link 
             to="/contact" 
-            className={`nav-link ${isActive('/contact')}`}
-            onClick={handleNavClick}
+            className={`nav-Link ${isActive('/contact') ? 'active' : ''}`}
+            onClick={closeMobileMenu}
           >
             <FiMail className="nav-icon" />
             Contact
           </Link>
         </nav>
 
+        {/* Mobile Menu Button */}
         <button 
           className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
         >
           <span></span>
           <span></span>

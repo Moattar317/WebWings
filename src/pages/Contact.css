@@ -17,10 +17,10 @@
   overflow: hidden;
   background: linear-gradient(135deg, 
     #0a455c 0%, 
-    #567196 25%, 
+    #3975a5 25%, 
     #0d4b6e 50%, 
     #01557c 75%, 
-    #418099 100%
+    #2b718d 100%
   );
 
   background-size: 400% 400%;
@@ -712,9 +712,6 @@
   justify-content: center;
 }
 
-
-
-
 .orbiting-dots {
   position: absolute;
   width: 100%;
@@ -1158,8 +1155,8 @@
   background: linear-gradient(135deg, #1877f2, #42a5f5);
 }
 
-.twitter {
-  background: linear-gradient(135deg, #1da1f2, #42a5f5);
+.instagram {
+  background: linear-gradient( #f2961d, #da4b4b, #d1419a);
 }
 
 .social-link:hover {
@@ -1492,7 +1489,12 @@
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
+  .gif-containerr
+  {
+    display: none;
+  }
+
   .contact-main {
     padding: 4rem 0;
   }
@@ -1553,7 +1555,12 @@
   .contact-container {
     padding: 0 1rem;
   }
-  
+
+  .gif-containerr
+  {
+    display: none;
+  }
+
   .panel-title {
     font-size: 2rem;
   }

@@ -2,7 +2,6 @@
 .process {
   padding: 2rem 0;
   color: #1e293b;
-  
   position: relative;
   overflow: hidden;
 }
@@ -21,10 +20,15 @@
     radial-gradient(at 80% 80%, rgba(244, 245, 245, 0.2) 0, transparent 50%);
   opacity: 0.4;
   z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.process:hover::before {
+  opacity: 0.6;
 }
 
 .light-gradient-mesh {
-  display: none; /* Remove the old mesh element */
+  display: none;
 }
 
 .floating-particles {
@@ -44,6 +48,12 @@
   opacity: var(--opacity);
   animation: floatParticle 20s infinite linear;
   animation-delay: var(--delay);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.process:hover .particle {
+  animation-duration: 15s;
+  opacity: calc(var(--opacity) * 1.5);
 }
 
 @keyframes floatParticle {
@@ -77,6 +87,11 @@
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
   z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+.process:hover .light-grid-lines {
+  opacity: 0.7;
 }
 
 .floating-shapes {
@@ -94,6 +109,12 @@
   opacity: 0.1;
   filter: blur(15px);
   animation: float 15s infinite ease-in-out;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.process:hover .light-shape {
+  opacity: 0.15;
+  filter: blur(12px);
 }
 
 .light-shape-1 {
@@ -104,8 +125,6 @@
   left: 5%;
   animation-delay: 0s;
 }
-
-
 
 .light-shape-4 {
   width: 350px;
@@ -131,13 +150,23 @@
 .process-container {
   max-width: 1200px;
   margin: 0 auto;
-    position: relative;
-  z-index: 2; /* Increased z-index to ensure content is above background elements */
+  position: relative;
+  z-index: 2;
+  padding: 0 2rem;
 }
 
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.section-header:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
 }
 
 .section-header h2 {
@@ -145,6 +174,46 @@
   font-weight: 700;
   color: #1e293b;
   margin-bottom: 1rem;
+  background: linear-gradient(135deg, #1e293b, #277797, #1e293b);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #277797, #1675a1);
+  transform: translateX(-50%);
+  transition: width 0.5s ease;
+}
+
+.section-header:hover h2::after {
+  width: 100px;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .section-header p {
@@ -152,6 +221,11 @@
   color: #475569;
   max-width: 600px;
   margin: 0 auto;
+  transition: color 0.3s ease;
+}
+
+.section-header:hover p {
+  color: #277797;
 }
 
 .process-timeline {
@@ -168,6 +242,12 @@
   opacity: 0;
   transform: translateX(-50px);
   transition: all 0.8s ease;
+  cursor: pointer;
+}
+
+.process-step:hover {
+  transform: translateY(-8px) scale(1.02);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .process-step.animate {
@@ -182,6 +262,10 @@
 
 .process-step:nth-child(even).animate {
   transform: translateX(0);
+}
+
+.process-step:nth-child(even):hover {
+  transform: translateY(-8px) scale(1.02);
 }
 
 .process-step::before {
@@ -202,6 +286,13 @@
   color: #ffffff;
   z-index: 3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-step:hover::before {
+  transform: translateX(-50%) scale(1.15) rotate(360deg);
+  box-shadow: 0 8px 25px rgba(39, 119, 151, 0.4);
+  background: linear-gradient(135deg, #1675a1, #277797);
 }
 
 .step-icon {
@@ -217,10 +308,41 @@
   position: relative;
   z-index: 3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.step-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 0.6s ease;
+}
+
+.process-step:hover .step-icon {
+  transform: scale(1.1) rotate(5deg);
+  border-color: rgba(39, 119, 151, 0.8);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 30px rgba(39, 119, 151, 0.2);
+}
+
+.process-step:hover .step-icon::before {
+  left: 100%;
 }
 
 .step-icon span {
   font-size: 2.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.process-step:hover .step-icon span {
+  transform: scale(1.2) rotateY(360deg);
+  text-shadow: 0 0 10px rgba(39, 119, 151, 0.3);
 }
 
 .step-content {
@@ -231,6 +353,32 @@
   padding: 2rem;
   position: relative;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.step-content::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #277797, #1675a1, #277797);
+  border-radius: 16px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.process-step:hover .step-content {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(39, 119, 151, 0.3);
+}
+
+.process-step:hover .step-content::after {
+  opacity: 1;
 }
 
 .step-content::before {
@@ -240,6 +388,7 @@
   width: 0;
   height: 0;
   border-style: solid;
+  transition: all 0.3s ease;
 }
 
 .process-step:nth-child(odd) .step-content::before {
@@ -254,16 +403,53 @@
   border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
 }
 
+.process-step:hover:nth-child(odd) .step-content::before {
+  border-color: transparent rgba(255, 255, 255, 0.98) transparent transparent;
+}
+
+.process-step:hover:nth-child(even) .step-content::before {
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.98);
+}
+
 .step-content h3 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #186780;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.step-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #277797, #1675a1);
+  transition: width 0.4s ease;
+}
+
+.process-step:hover .step-content h3 {
+  color: #277797;
+  transform: translateY(-2px);
+}
+
+.process-step:hover .step-content h3::after {
+  width: 100%;
 }
 
 .step-content p {
   line-height: 1.6;
   color: #475569;
+  transition: all 0.3s ease;
+}
+
+.process-step:hover .step-content p {
+  color: #1e293b;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .step-connector {
@@ -275,6 +461,31 @@
   background: linear-gradient(to bottom, #3b82f6, #93c5fd);
   transform: translateX(-50%);
   z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.process-step:hover + .process-step .step-connector,
+.process-step:hover .step-connector {
+  width: 4px;
+  background: linear-gradient(to bottom, #277797, #1675a1);
+  box-shadow: 0 0 10px rgba(39, 119, 151, 0.3);
+}
+
+/* Pulse animation for active elements */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(39, 119, 151, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(39, 119, 151, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(39, 119, 151, 0);
+  }
+}
+
+.process-step:hover .step-icon {
+  animation: pulse 2s infinite;
 }
 
 @media (max-width: 768px) {
@@ -293,12 +504,20 @@
     transform: translateY(0) !important;
   }
 
+  .process-step:hover {
+    transform: translateY(-5px) scale(1.01) !important;
+  }
+
   .process-step::before {
     position: relative;
     left: auto;
     top: auto;
     transform: none;
     margin-bottom: 1rem;
+  }
+
+  .process-step:hover::before {
+    transform: scale(1.1) rotate(360deg);
   }
 
   .step-content::before {
@@ -321,10 +540,12 @@
   }
   
   .light-shape-1,
-  .light-shape-2,
-  .light-shape-3,
   .light-shape-4 {
     width: 200px;
     height: 200px;
+  }
+
+  .process-container {
+    padding: 0 1rem;
   }
 }

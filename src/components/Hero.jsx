@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom'; // Add this import
 import './Hero.css';
 import gif1 from "../assets/g21.gif";
 import gif2 from "../assets/g19.gif";
@@ -16,11 +17,12 @@ const Hero = () => {
       media: gif1,
       mediaType: "gif",
       cta: "GET IN TOUCH",
+      ctaLink: "/contact", // Add link for this slide
       theme: {
         primary: "#163a4bff",
         secondary: "#18343fff",
         accent: "#a2cce0ff",
-        overlay: "rgba(10, 69, 92, 0.7)"
+        overlay: "rgba(2, 60, 85, 0.7)"
       },
     },
     {
@@ -30,6 +32,7 @@ const Hero = () => {
       media: gif2,
       mediaType: "gif",
       cta: "LEARN MORE",
+      ctaLink: "#about", // Add link for this slide
       theme: {
         primary: "#085ea3ff",
         secondary: "#052f61ff",
@@ -44,6 +47,7 @@ const Hero = () => {
       media: gif3,
       mediaType: "gif",
       cta: "VIEW PROJECTS",
+      ctaLink: "/portfolio", // Portfolio link for this slide
       theme: {
         primary: "#1e8bca56",
         secondary: "#043c5cff",
@@ -71,7 +75,6 @@ const splitText = (text, type, gradient) => {
     </span>
   ));
 };
-
 
   // Typewriter effect component
   const TypewriterText = ({ text,  className = "" }) => {
@@ -171,23 +174,51 @@ const splitText = (text, type, gradient) => {
                     />
                   </h2>
                   <p className="hero-description">{slide.description}</p>
-                  <button 
-                    className="hero-cta"
-                    style={{
-                      background: `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`,
-                      boxShadow: `0 10px 25px ${slide.theme.accent}40`
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = `linear-gradient(135deg, ${slide.theme.primary}, ${slide.theme.secondary})`;
-                      e.target.style.boxShadow = `0 15px 35px ${slide.theme.accent}60`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`;
-                      e.target.style.boxShadow = `0 10px 25px ${slide.theme.accent}40`;
-                    }}
-                  >
-                    {slide.cta}
-                  </button>
+                  
+                  {/* Dynamic CTA based on link type */}
+                  {slide.ctaType === "route" ? (
+                    <Link 
+                      to={slide.ctaLink}
+                      className="hero-cta"
+                      style={{
+                        background: `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`,
+                        boxShadow: `0 10px 25px ${slide.theme.accent}40`,
+                        textDecoration: 'none',
+                        display: 'inline-block'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = `linear-gradient(135deg, ${slide.theme.primary}, ${slide.theme.secondary})`;
+                        e.target.style.boxShadow = `0 15px 35px ${slide.theme.accent}60`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`;
+                        e.target.style.boxShadow = `0 10px 25px ${slide.theme.accent}40`;
+                      }}
+                    >
+                      {slide.cta}
+                    </Link>
+                  ) : (
+                    <a 
+                      href={slide.ctaLink}
+                      className="hero-cta"
+                      style={{
+                        background: `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`,
+                        boxShadow: `0 10px 25px ${slide.theme.accent}40`,
+                        textDecoration: 'none',
+                        display: 'inline-block'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = `linear-gradient(135deg, ${slide.theme.primary}, ${slide.theme.secondary})`;
+                        e.target.style.boxShadow = `0 15px 35px ${slide.theme.accent}60`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = `linear-gradient(135deg, ${slide.theme.accent}, ${slide.theme.primary})`;
+                        e.target.style.boxShadow = `0 10px 25px ${slide.theme.accent}40`;
+                      }}
+                    >
+                      {slide.cta}
+                    </a>
+                  )}
                 </div>
 
                 <div className="hero-visual">

@@ -23,7 +23,7 @@ const Services = () => {
       subtitle: "Custom Website Design",
       description: "We specialize in crafting professional, custom-designed websites tailored to your brand. Each layout is built for responsiveness, user experience, and strong digital impact.",
       features: ["E-Commerce Solutions", "CMS Integration", "Responsive Design"],
-      color: "#3c5d8dff"
+      color: "#b1c5e4ff"
     },
     {
       icon: i2,
@@ -31,7 +31,7 @@ const Services = () => {
       subtitle: "Custom App Development",
       description: "We develop mobile apps tailored to your business scalable, functional, and built to deliver seamless experiences across Android and iOS platforms.",
       features: ["User-Friendly Interfaces", "Maintenance & Updates", "Cross-Platform"],
-      color: "#b180a5ff"
+      color: "#c27686ff"
     },
     {
       icon: i3,
@@ -39,7 +39,7 @@ const Services = () => {
       subtitle: "Custom Software Solutions", 
       description: "We build tailored software that fits your business model whether it's internal tools, automation, or specialized platforms that streamline your workflow.",
       features: ["API & System Integration", "Scalable Architecture", "Custom Solutions"],
-      color: "#66568bff"
+      color: "#beb2dbff"
     },
     {
       icon: i4,
@@ -245,15 +245,7 @@ const Services = () => {
                 </div>
                
               </div>
-              <button className="cta-button" >
-                <span>Learn More</span>
-                <div className="button-arrow">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div className="button-hover-effect"></div>
-              </button>
+              
             </div>
           </div>
         </div>
