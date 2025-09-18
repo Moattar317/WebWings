@@ -186,7 +186,7 @@ const Contact = () => {
                     <div className="contact-value">
                       F-11 Markaz, Islamabad, Pakistan
                       <span className="map-link-extra">
-                        &nbsp;|&nbsp;View on Map&nbsp;
+                        
                         <FontAwesomeIcon icon={faExternalLinkAlt} size="sm" />
                       </span>
                     </div>
@@ -291,7 +291,7 @@ const Contact = () => {
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    className="serviice-dropdown"
+                    className="serviice-dropdoown"
                   >
                     <option value="" defaultChecked>Select a Service</option>
                     <option value="Website Development">Website Development</option>

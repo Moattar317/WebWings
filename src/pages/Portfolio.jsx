@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useCallback} from 'react';
 import h1 from "../assets/h5.jpg"
 import './Portfolio.css';
 import m7 from '../assets/7.jpg'
@@ -185,18 +185,18 @@ const Portfolio = () => {
     }
   };
 
-  const handleKeyPress = (e) => {
+ const handleKeyPress = useCallback((e) => {
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
     if (e.key === 'Escape') closeGallery();
-  };
+  }, [nextImage, prevImage, closeGallery, selectedProject]);
 
   useEffect(() => {
     if (selectedProject) {
       window.addEventListener('keydown', handleKeyPress);
       return () => window.removeEventListener('keydown', handleKeyPress);
     }
-  }, [selectedProject]);
+  }, [selectedProject, handleKeyPress]);
 
   return (
     <div 
