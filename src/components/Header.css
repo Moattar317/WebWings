@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.9);
+   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
   border-bottom: 1px solid rgba(59, 130, 246, 0.1);
@@ -95,7 +95,6 @@
   color: #18191a;
 }
 .nav-button:hover,
-
 .dropdown-trigger:hover {
   color: #18191a;
 }
@@ -111,7 +110,6 @@
 }
 /* Underline effect */
 .nav-button::after,
-
 .dropdown-trigger::after {
   content: '';
   position: absolute;
@@ -122,9 +120,11 @@
   background: linear-gradient(90deg, #3b82f6, #2563eb);
   transition: width 0.3s ease;
 }
-
+.nav-Link:hover::after{
+  width: 100%;
+}
 .nav-button:hover::after,
-.nav-Link:hover::after,
+
 .dropdown-trigger:hover::after {
   width: 100%;
 }
@@ -135,8 +135,12 @@
   transition: all 0.3s ease;
 }
 
+.nav-Link:hover .nav-icon{
+  transform: translateY(-2px);
+  color: #0d6699;
+}
+
 .nav-button:hover .nav-icon,
-.nav-Link:hover .nav-icon,
 .dropdown-trigger:hover .nav-icon {
   transform: translateY(-2px);
   color: #0d6699;
@@ -321,7 +325,7 @@
 
   /* Mobile nav items styling */
   .nav-button,
-  .nav-link {
+  .nav-Link {
     font-size: 1.2rem;
     padding: 1rem 1.5rem;
     color: #0d6699;
@@ -335,7 +339,7 @@
   }
 
   .nav-button:hover,
-  .nav-link:hover {
+  .nav-Link:hover {
     background: rgba(59, 130, 246, 0.1);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
@@ -343,7 +347,7 @@
 
   /* Remove underline effect on mobile */
   .nav-button::after,
-  .nav-link::after {
+  .nav-Link::after {
     display: none;
   }
 
@@ -438,7 +442,7 @@
   }
   
   .nav-button,
-  .nav-link {
+  .nav-Link {
     font-size: 1.1rem;
     width: 240px;
     padding: 1.1rem 1.4rem;

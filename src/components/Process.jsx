@@ -53,7 +53,7 @@ const Process = () => {
 
   return (    
     <section id="process" className="process" ref={processRef}>
-      <div className="process-container overflow-hidden">
+      <div className="process-container overflow-hidden position-relative">
         <div className="light-gradient-mesh"></div>
         <div className="floating-particles">
           {[...Array(15)].map((_, i) => (
@@ -69,28 +69,34 @@ const Process = () => {
           ))}
         </div>
         <div className="light-grid-lines"></div>
-        
+
         <div className="floating-shapes">
           <div className="light-shape light-shape-1"></div>
-          
           <div className="light-shape light-shape-4"></div>
         </div>
-        <div className="section-header relative z-10">
-          <h2>Our Process</h2>
-          <p>A systematic approach to delivering exceptional digital solutions</p>
+        
+        <div className="section-header position-relative z-3 text-center mb-5">
+          <h2 className='heading display-4 fw-bold mb-3'>Our Process</h2>
+          <p className="fs-5 text-muted mx-auto" style={{maxWidth: '600px'}}>
+            A systematic approach to delivering exceptional digital solutions
+          </p>
         </div>
 
-        <div className="process-timeline">
+        <div className="process-timeline position-relative">
           {processSteps.map((step, index) => (
-            <div key={index} className="process-step" data-step={index + 1}>
-              <div className="step-icon">
-                <span>{step.icon}</span>
+            <div key={index} className={`process-step d-flex ${index % 2 === 1 ? 'flex-row-reverse' : ''} align-items-start mb-5 position-relative`} data-step={index + 1}>
+              <div className="step-icon d-flex align-items-center justify-content-center mx-auto mx-md-0">
+                <span className="fs-1">{step.icon}</span>
               </div>
-              <div className="step-content">
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
+              
+              <div className="step-content ms-md-4 me-md-4 mt-md-0 text-center text-md-start">
+                <h3 className="fw-bold mb-3">{step.title}</h3>
+                <p className="mb-0">{step.description}</p>
               </div>
-              {index < processSteps.length - 1 && <div className="step-connector"></div>}
+              
+              {index < processSteps.length - 1 && (
+                <div className="step-connector d-none d-md-block position-absolute start-50 translate-middle-x"></div>
+              )}
             </div>
           ))}
         </div>

@@ -31,7 +31,7 @@ const Services = () => {
       subtitle: "Custom App Development",
       description: "We develop mobile apps tailored to your business scalable, functional, and built to deliver seamless experiences across Android and iOS platforms.",
       features: ["User-Friendly Interfaces", "Maintenance & Updates", "Cross-Platform"],
-      color: "#c27686ff"
+      color: "#93c0d4ff"
     },
     {
       icon: i3,

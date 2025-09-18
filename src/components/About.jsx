@@ -1,5 +1,5 @@
 // src/components/About/About.jsx
-import React, { useRef, useEffect, useState } from 'react';
+import  { useRef, useEffect, useState } from 'react';
 import './About.css';
 
 
@@ -39,7 +39,7 @@ const About = () => {
     {
       icon: visionIcon, 
       title: "OUR VISION",
-      description: "At WebWings, our vision is to become a leading force in digital innovation by empowering businesses of all sizes with smart, adaptable, and future-ready solutions."
+      description: "At WebWings, our vision is to become a leading force in digital innovation by empowering businesses of all sizes with smart, adaptable, and future-ready solutions.We focus on building reliable systems for clients."
     },
     {
       icon: whyUsIcon,

@@ -7,6 +7,7 @@ import {
   FiLayers, 
   FiBriefcase, 
   FiUser, 
+  FiHome,
   FiMail,
   FiChevronDown,
   FiGlobe,
@@ -133,6 +134,15 @@ const Header = () => {
         {/* Navigation */}
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
           {/* Services Dropdown */}
+
+          <Link 
+  to="/" 
+  className={`nav-Link ${isActive('/') ? 'active' : ''}`}
+  onClick={closeMobileMenu}
+>
+  <FiHome className="nav-icon" />
+  Home
+</Link>
           <div 
             className="dropdown-container"
             ref={dropdownRef}
@@ -177,6 +187,7 @@ const Header = () => {
 </div>
           </div>
 
+         
           {/* Other Nav Items */}
           <button 
             className="nav-button"

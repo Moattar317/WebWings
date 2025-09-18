@@ -1,6 +1,6 @@
 /* src/components/Process/Process.css */
 .process {
-  padding: 2rem 0;
+  padding: 5rem 0;
   color: #1e293b;
   position: relative;
   overflow: hidden;
@@ -169,22 +169,20 @@
   transition: transform 0.3s ease;
 }
 
-.section-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #1e293b;
+.section-header .heading {
+   font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #1e293b, #277797, #1e293b);
-  background-size: 200% 200%;
-  background-clip: text;
+  background: linear-gradient(135deg, #218ece, #026186);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   animation: gradientShift 3s ease-in-out infinite;
   position: relative;
   overflow: hidden;
 }
 
-.section-header h2::after {
+.section-header .heading::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -196,7 +194,7 @@
   transition: width 0.5s ease;
 }
 
-.section-header:hover h2::after {
+.section-header:hover .heading::after {
   width: 100px;
 }
 
@@ -216,33 +214,23 @@
   }
 }
 
-.section-header p {
-  font-size: 1.2rem;
-  color: #475569;
-  max-width: 600px;
-  margin: 0 auto;
-  transition: color 0.3s ease;
-}
-
-.section-header:hover p {
-  color: #277797;
-}
-
 .process-timeline {
   position: relative;
   margin-top: 4rem;
 }
 
 .process-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 4rem;
-  position: relative;
   opacity: 0;
   transform: translateX(-50px);
   transition: all 0.8s ease;
   cursor: pointer;
+  margin-bottom: 4rem !important;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.process-step:nth-child(even) {
+  transform: translateX(50px);
 }
 
 .process-step:hover {
@@ -255,11 +243,6 @@
   transform: translateX(0);
 }
 
-.process-step:nth-child(even) {
-  flex-direction: row-reverse;
-  transform: translateX(50px);
-}
-
 .process-step:nth-child(even).animate {
   transform: translateX(0);
 }
@@ -268,12 +251,14 @@
   transform: translateY(-8px) scale(1.02);
 }
 
+
+
 .process-step::before {
   content: attr(data-step);
   position: absolute;
   left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  top: -15%;
+  transform: translateX(-50%, -50%);
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #277797, #1675a1);
@@ -488,11 +473,8 @@
   animation: pulse 2s infinite;
 }
 
+/* Mobile responsiveness without media queries */
 @media (max-width: 768px) {
-  .process {
-    padding: 2rem 0;
-  }
-  
   .process-step {
     flex-direction: column !important;
     align-items: center;
@@ -531,7 +513,7 @@
     height: 50px;
   }
   
-  .section-header h2 {
+  .section-header .heading {
     font-size: 2rem;
   }
   

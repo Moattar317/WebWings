@@ -141,7 +141,7 @@
 .decorration-line {
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #4361ee, transparent);
+  background: linear-gradient(90deg, transparent, #026186, transparent);
   margin: 0 1rem;
 }
 
@@ -149,16 +149,15 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #4361ee;
-  box-shadow: 0 0 15px #4361ee;
+  background: #026186;
+  box-shadow: 0 0 15px #026186;
 }
 
 .sectioon-header h2 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
   margin-bottom: 1rem;
-  color: #1a202c;
-  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  background: linear-gradient(135deg, #218ece, #026186);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -177,7 +176,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   margin-bottom: 6rem;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   max-width: none;
 }
@@ -229,7 +228,7 @@
   width: 80px;
   height: 80px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+  background: linear-gradient(135deg, #218ece, #026186);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,14 +267,14 @@
   font-weight: 700;
   margin-bottom: 1rem;
   color: #1a202c;
-  background: linear-gradient(135deg, #4361ee, #3a0ca3);
+ background: linear-gradient(135deg, #218ece, #026186);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .cardd-content p {
-  color: #64748b;
+  color: #313233;
   line-height: 1.7;
   font-size: 1.05rem;
 }

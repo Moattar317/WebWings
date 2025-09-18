@@ -3,9 +3,9 @@ import h1 from "../assets/h5.jpg"
 import './Portfolio.css';
 import m7 from '../assets/7.jpg'
 import m1 from '../assets/MCC Rider/Screenshot_20250503-153136.jpg'
-import m2 from '../assets/MCC Rider/Screenshot_20250503-153136.jpg'
+import m2 from '../assets/MCC Rider/Screenshot_20250503-153140.jpg'
 import m3 from '../assets/MCC Admin/Screenshot_20250503-152931.jpg'
-import m4 from '../assets/MCC/Screenshot_20250503-152814.jpg'
+import m4 from '../assets/MCC/Screenshot_20250503-152758.jpg'
 import m5 from '../assets/MCC/Screenshot_20250503-152834.jpg'
 import m6 from '../assets/MCC/Screenshot_20250503-152823.jpg'
 import a1 from '../assets/Attendance_App/1.jpeg'
@@ -14,12 +14,13 @@ import a3 from '../assets/Attendance_App/Attendance_Request.jpeg'
 import a4 from '../assets/Attendance_App/Dashboard_2.jpeg'
 import a5 from '../assets/Attendance_App/Month_Attendance.jpeg'
 import a6 from '../assets/Attendance_App/Salary_total.jpeg' 
+import a8 from '../assets/Attendance_App/Absent_Employees.jpeg'
 import a7 from '../assets/1.jpg'
 import o1 from '../assets/Order_Taker/Login.png'
 import o2 from '../assets/Order_Taker/Item_Selection.png'
 import o3 from '../assets/Order_Taker/Order_Form.png'
 import o4 from '../assets/Order_Taker/Table.png'
-import o5 from '../assets/Order_Requisition/Order_Form.png'
+
 import o6 from '../assets/2.jpg'
 import r1 from '../assets/Retail Admin/Screenshot_20250503-153348.jpg'
 import r2 from '../assets/Retail Admin/Screenshot_20250503-153354.jpg'
@@ -82,7 +83,7 @@ const Portfolio = () => {
         "Advanced biometric attendance system with facial recognition and fingerprint integration capabilities.",
         "Real-time employee tracking, automated payroll calculation, and comprehensive reporting dashboard."
       ],
-      images: [a7, a1, a2, a3, a4, a5, a6]
+      images: [a7, a1, a2, a3, a4, a5, a6,a8]
     },
     {
       id: 3,
@@ -92,7 +93,7 @@ const Portfolio = () => {
         "Streamlined order processing system with automated workflow management and inventory synchronization.",
         "Real-time order tracking, customer notifications, and integrated logistics management for efficient delivery."
       ],
-      images: [o6, o1, o2, o3, o4, o5]
+      images: [o6, o1, o2, o3, o4]
     },
     {
       id: 4,
@@ -226,7 +227,7 @@ const Portfolio = () => {
                 <h1 className="portfolio-work-title">
                   <span className="title-word">Crafting</span>
                   <span className="title-word">Digital</span>
-                  <span className="title-word gradient-text">Excellence</span>
+                  <span className="title-word ">Excellence</span>
                 </h1>
                 <p className="portfolio-work-subtitle">
                   <span className="typing-text">Transforming Ideas Into Reality</span>
@@ -248,18 +249,18 @@ const Portfolio = () => {
                     <span>Get Quote</span>
                   </button>
                 </div>
-                <div className="portfolio-work-stats">
-                  <div className="stat-item">
-                    <span className="stat-number">50+</span>
-                    <span className="stat-label">Projects</span>
+                <div className="portfoliio-workk-staats">
+                  <div className="staat-iteem">
+                    <span className="staat-nummber">50+</span>
+                    <span className="staat-labbel">Projects</span>
                   </div>
-                  <div className="stat-item">
-                    <span className="stat-number">15+</span>
-                    <span className="stat-label">Clients</span>
+                  <div className="staat-iteem">
+                    <span className="staat-nummber">15+</span>
+                    <span className="staat-labbel">Clients</span>
                   </div>
-                  <div className="stat-item">
-                    <span className="stat-number">6+</span>
-                    <span className="stat-label">Years</span>
+                  <div className="staat-iteem">
+                    <span className="staat-nummber">6+</span>
+                    <span className="staat-labbel">Years</span>
                   </div>
                 </div>
               </div>
