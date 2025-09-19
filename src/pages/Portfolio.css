@@ -768,7 +768,7 @@ body {
             background: rgba(250, 249, 249, 0.9);
             backdrop-filter: blur(15px);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            color: rgba(16, 128, 172, 0.658);
+            color: rgba(87, 182, 219, 0.658);
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -785,7 +785,7 @@ body {
         .gallery-nav:hover {
             background: rgba(247, 245, 245, 0.4);
             transform: translateY(-50%) scale(1.1);
-            border-color: rgba(59, 130, 246, 0.5);
+            border-color: rgba(78, 79, 80, 0.5);
         }
 
         .gallery-nav.prev {
@@ -800,9 +800,13 @@ body {
             .gallery-nav {
                 width: 50px;
                 height: 50px;
+                background: #868686;
+                color: white;
                 font-size: 1.4rem;
             }
-            
+            .gallery-nav:hover {
+                background: #7e7c7c;
+            }
             .gallery-nav.prev {
                 left: 1rem;
             }

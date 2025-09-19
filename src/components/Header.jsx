@@ -27,7 +27,7 @@ const Header = () => {
   const timeoutRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
-
+const [selectedService, setSelectedService] = useState(null);
   // Services data
   const services = [
     { name: "Website Development", id: "services", icon: <FiGlobe /> },
@@ -125,11 +125,11 @@ const Header = () => {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="header-container">
         {/* Logo */}
-        <Link to="/" className="logo-link" onClick={closeMobileMenu}>
+       
           <div className="logo">
             <img src={logo} alt="WebWings" />
           </div>
-        </Link>
+        
         
         {/* Navigation */}
         <nav className={`nav ${isMobileMenuOpen ? 'nav-open' : ''}`}>
@@ -157,15 +157,15 @@ const Header = () => {
               Services
               <FiChevronDown className={`dropdown-arrow ${showDropdown ? 'rotate' : ''}`} />
             </button>
-            
-            <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
+           <div className={`dropdown-menu ${showDropdown ? 'show' : ''}`}>
   {services.map((service, index) => (
     <a
       key={index}
       href={location.pathname === '/' ? `#${service.id}` : '/'}
-      className="dropdown-item"
+      className={`dropdown-item${selectedService === service.name ? ' selected' : ''}`}
       onClick={e => {
         e.preventDefault();
+        setSelectedService(service.name);
         if (location.pathname === '/') {
           // On homepage, scroll to section
           const el = document.getElementById(service.id);

@@ -82,7 +82,7 @@ const Footer = () => {
               <p>📧 info@webwings.com</p>
               <p>📱 +92 317 4030303</p>
               <p>🌐 webwings.com.pk</p>
-              <p>📍 Pakistan</p>
+              <p>📍 F-11 Markaz Islamabad</p>
             </div>
           </div>
         </div>

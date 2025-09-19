@@ -12,6 +12,8 @@ const Services = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [headerVisible, setHeaderVisible] = useState(false);
   const [visibleItems, setVisibleItems] = useState([]);
+  const [mobileSelectedService, setMobileSelectedService] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const headerRef = useRef(null);
   const itemsRef = useRef([]);
@@ -77,12 +79,26 @@ const Services = () => {
     }
   };
 
+  // Check if device is mobile
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveService((prev) => (prev + 1) % services.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [services.length]);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Desktop auto-rotation
+  useEffect(() => {
+    if (!isMobile) {
+      const interval = setInterval(() => {
+        setActiveService((prev) => (prev + 1) % services.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [services.length, isMobile]);
 
   // IntersectionObserver for scroll animations
   useEffect(() => {
@@ -115,6 +131,52 @@ const Services = () => {
       itemObserver.disconnect();
     };
   }, []);
+
+  const handleServiceClick = (index) => {
+    if (isMobile) {
+      // Toggle mobile service detail
+      setMobileSelectedService(mobileSelectedService === index ? null : index);
+    } else {
+      // Desktop behavior
+      setActiveService(index);
+    }
+  };
+
+  const renderMobileServiceDetail = (service, index) => {
+    if (mobileSelectedService !== index) return null;
+
+    return (
+      <div 
+        className="mobile-service-detail"
+        style={{ '--service-color': service.color }}
+      >
+        <div className="mobile-detail-header">
+          <div className="mobile-service-icon">
+            <img src={service.icon} alt={service.title} />
+          </div>
+          <div className="mobile-service-titles">
+            <h3>{service.title}</h3>
+            <h4>{service.subtitle}</h4>
+          </div>
+        </div>
+        
+        <p className="mobile-service-description">{service.description}</p>
+        
+        <div className="mobile-features-grid">
+          {service.features.map((feature, idx) => (
+            <div key={idx} className="mobile-feature-item">
+              <div className="mobile-feature-check">
+                <svg width="12" height="8" viewBox="0 0 14 10" fill="none">
+                  <path d="M1 5L5 9L13 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section
@@ -177,25 +239,33 @@ const Services = () => {
         <div className="services-display">
           <div className="service-selector">
             {services.map((service, index) => (
-              <div
-                key={index}
-                data-index={index}
-                ref={(el) => (itemsRef.current[index] = el)}
-                className={`selector-item ${
-                  index === activeService ? 'active' : ''
-                } ${visibleItems.includes(index) ? 'visible' : ''}`}
-                onClick={() => setActiveService(index)}
-                style={{ '--service-color': service.color }}
-              >
-                <div className="selector-icon">
-                  <img src={service.icon} alt={service.title} />
+              <React.Fragment key={index}>
+                <div
+                  data-index={index}
+                  data-description={service.description}
+                  ref={(el) => (itemsRef.current[index] = el)}
+                  className={`selector-item ${
+                    !isMobile && index === activeService ? 'active' : ''
+                  } ${
+                    isMobile && index === mobileSelectedService ? 'mobile-active' : ''
+                  } ${visibleItems.includes(index) ? 'visible' : ''}`}
+                  onClick={() => handleServiceClick(index)}
+                  style={{ '--service-color': service.color }}
+                >
+                  <div className="selector-icon">
+                    <img src={service.icon} alt={service.title} />
+                  </div>
+                  <span>{service.title}</span>
+                  <div className="selector-highlight"></div>
                 </div>
-                <span>{service.title}</span>
-                <div className="selector-highlight"></div>
-              </div>
+                
+                {/* Mobile service detail appears below each clicked service */}
+                {isMobile && renderMobileServiceDetail(service, index)}
+              </React.Fragment>
             ))}
           </div>
 
+          {/* Desktop service showcase - hidden on mobile */}
           <div 
             className="service-showcase"
             style={{ 
@@ -229,8 +299,6 @@ const Services = () => {
                   </div>
                 ))}
               </div>
-              
-              
             </div>
             
             <div className="showcase-visual">
@@ -243,9 +311,7 @@ const Services = () => {
                     <img src={services[activeService].icon} alt={services[activeService].title} />
                   </div>
                 </div>
-               
               </div>
-              
             </div>
           </div>
         </div>

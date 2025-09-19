@@ -1,9 +1,31 @@
 // src/components/Process/Process.jsx
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Process.css';
 
 const Process = () => {
   const processRef = useRef(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    // Check if the device supports touch
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const steps = processRef.current?.querySelectorAll('.process-step');
+    steps?.forEach((step) => observer.observe(step));
+
+    return () => observer.disconnect();
+  }, []);
 
   const processSteps = [
     {
@@ -32,24 +54,6 @@ const Process = () => {
       description: "After final approval, the system is deployed in the production environment. We continue to provide monitoring, updates, improvement and support to ensure long-term stability and performance."
     }
   ];
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const steps = processRef.current?.querySelectorAll('.process-step');
-    steps?.forEach((step) => observer.observe(step));
-
-    return () => observer.disconnect();
-  }, []);
 
   return (    
     <section id="process" className="process" ref={processRef}>

@@ -1,6 +1,6 @@
 /* src/components/Process/Process.css */
 .process {
-  padding: 5rem 0;
+  padding: clamp(2rem, 5vw, 5rem) 0;
   color: #1e293b;
   position: relative;
   overflow: hidden;
@@ -118,8 +118,8 @@
 }
 
 .light-shape-1 {
-  width: 400px;
-  height: 400px;
+  width: min(400px, 40vw);
+  height: min(400px, 40vw);
   background: #0e81b6;
   top: 10%;
   left: 5%;
@@ -127,8 +127,8 @@
 }
 
 .light-shape-4 {
-  width: 350px;
-  height: 350px;
+  width: min(350px, 35vw);
+  height: min(350px, 35vw);
   background: #74531a;
   bottom: 2%;
   right: 20%;
@@ -148,16 +148,16 @@
 }
 
 .process-container {
-  max-width: 1200px;
+  max-width: min(1200px, 90vw);
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s ease forwards;
@@ -170,7 +170,7 @@
 }
 
 .section-header .heading {
-   font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 800;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #218ece, #026186);
@@ -195,7 +195,7 @@
 }
 
 .section-header:hover .heading::after {
-  width: 100px;
+  width: min(100px, 20vw);
 }
 
 @keyframes gradientShift {
@@ -216,7 +216,7 @@
 
 .process-timeline {
   position: relative;
-  margin-top: 4rem;
+  margin-top: clamp(2rem, 6vw, 4rem);
 }
 
 .process-step {
@@ -224,13 +224,33 @@
   transform: translateX(-50px);
   transition: all 0.8s ease;
   cursor: pointer;
-  margin-bottom: 4rem !important;
-  gap: 2rem;
+  margin-bottom: clamp(2rem, 6vw, 4rem) !important;
+  gap: clamp(1rem, 3vw, 2rem);
   align-items: flex-start;
+  display: flex;
 }
 
-.process-step:nth-child(even) {
+.process-step.reverse-step {
+  flex-direction: row-reverse;
   transform: translateX(50px);
+}
+
+.process-step.reverse-step .step-content::before {
+  right: -15px;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+}
+
+.process-step.reverse-step:hover .step-content::before {
+  border-color: transparent transparent transparent rgba(255, 255, 255, 0.98);
+}
+
+.process-step.reverse-step.animate {
+  transform: translateX(0);
+}
+
+.process-step.reverse-step:hover {
+  transform: translateY(-8px) scale(1.02);
 }
 
 .process-step:hover {
@@ -251,23 +271,21 @@
   transform: translateY(-8px) scale(1.02);
 }
 
-
-
 .process-step::before {
   content: attr(data-step);
   position: absolute;
   left: 50%;
-  top: -15%;
-  transform: translateX(-50%, -50%);
-  width: 60px;
-  height: 60px;
+  top: -10px;
+  transform: translateX(-50%);
+  width: clamp(40px, 8vw, 60px);
+  height: clamp(40px, 8vw, 60px);
   background: linear-gradient(135deg, #277797, #1675a1);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2.5vw, 1.2rem);
   color: #ffffff;
   z-index: 3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -281,10 +299,10 @@
 }
 
 .step-icon {
-  width: 100px;
-  height: 100px;
+  width: clamp(70px, 14vw, 100px);
+  height: clamp(70px, 14vw, 100px);
   background: rgba(255, 255, 255, 0.8);
-  border: 5px solid rgba(42, 153, 204, 0.5);
+  border: min(5px, 1vw) solid rgba(42, 153, 204, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -320,7 +338,7 @@
 }
 
 .step-icon span {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-block;
 }
@@ -335,7 +353,7 @@
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 16px;
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 2rem);
   position: relative;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -397,7 +415,7 @@
 }
 
 .step-content h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 700;
   margin-bottom: 1rem;
   color: #186780;
@@ -430,6 +448,7 @@
   line-height: 1.6;
   color: #475569;
   transition: all 0.3s ease;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .process-step:hover .step-content p {
@@ -440,9 +459,9 @@
 .step-connector {
   position: absolute;
   left: 50%;
-  top: 100px;
+  top: clamp(70px, 14vw, 100px);
   width: 2px;
-  height: 100px;
+  height: clamp(80px, 16vw, 100px);
   background: linear-gradient(to bottom, #3b82f6, #93c5fd);
   transform: translateX(-50%);
   z-index: 1;
@@ -473,61 +492,165 @@
   animation: pulse 2s infinite;
 }
 
-/* Mobile responsiveness without media queries */
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-  .process-step {
+  /* Override Bootstrap classes completely */
+  .process-step.d-flex,
+  .process-step.d-flex.flex-row-reverse {
+    display: flex !important;
     flex-direction: column !important;
-    align-items: center;
-    text-align: center;
-    transform: translateY(30px) !important;
-  }
-
-  .process-step.animate {
+    align-items: center !important;
+    text-align: center !important;
     transform: translateY(0) !important;
   }
 
-  .process-step:hover {
+  .process-step,
+  .process-step:nth-child(even) {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    transform: translateY(30px) !important;
+    gap: 0.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .process-step.animate,
+  .process-step:nth-child(even).animate {
+    transform: translateY(0) !important;
+  }
+
+  .process-step:hover,
+  .process-step:nth-child(even):hover {
     transform: translateY(-5px) scale(1.01) !important;
   }
 
   .process-step::before {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin-bottom: 1rem;
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin-bottom: 1rem !important;
+    order: -1 !important;
   }
 
   .process-step:hover::before {
-    transform: scale(1.1) rotate(360deg);
+    transform: scale(1.1) rotate(360deg) !important;
+  }
+
+  .step-icon {
+    order: 1 !important;
+    margin: 0 !important;
+  }
+
+  .step-content {
+    order: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .step-content.ms-md-4,
+  .step-content.me-md-4 {
+    margin: 0 !important;
   }
 
   .step-content::before {
-    display: none;
+    display: none !important;
   }
 
   .step-connector {
-    left: 50%;
-    top: auto;
-    bottom: -50px;
-    height: 50px;
+    display: none !important;
   }
   
   .section-header .heading {
-    font-size: 2rem;
+    font-size: 2rem !important;
   }
   
   .section-header p {
-    font-size: 1rem;
+    font-size: 1rem !important;
   }
   
   .light-shape-1,
   .light-shape-4 {
-    width: 200px;
-    height: 200px;
+    width: 200px !important;
+    height: 200px !important;
   }
 
   .process-container {
-    padding: 0 1rem;
+    padding: 0 1rem !important;
+  }
+
+  /* Remove Bootstrap responsive text classes on mobile */
+  .step-content.text-md-start {
+    text-align: center !important;
+  }
+
+  .step-content.mt-md-0 {
+    margin-top: 0 !important;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .process-step {
+    gap: 1rem;
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .step-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .step-icon span {
+    font-size: 1.5rem;
+  }
+  
+  .step-content {
+    padding: 1rem;
+  }
+
+  .process-step::before {
+    width: 35px;
+    height: 35px;
+    font-size: 0.8rem;
+  }
+  
+  .section-header .heading {
+    font-size: 1.8rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1600px) {
+  .process-container {
+    max-width: 1400px;
+  }
+}
+
+/* Touch device adjustments */
+@media (hover: none) {
+  .process-step:hover {
+    transform: none !important;
+  }
+  
+  .process-step:hover .step-icon {
+    animation: none;
+    transform: none;
+  }
+  
+  .process-step:hover .step-content {
+    transform: none;
+  }
+  
+  .process-step:hover::before {
+    transform: translateX(-50%);
+  }
+
+  /* Mobile touch adjustments */
+  @media (max-width: 768px) {
+    .process-step:hover::before {
+      transform: none !important;
+    }
   }
 }
