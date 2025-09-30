@@ -75,8 +75,8 @@ const Process = () => {
         <div className="light-grid-lines"></div>
 
         <div className="floating-shapes">
-          <div className="light-shape light-shape-1"></div>
-          <div className="light-shape light-shape-4"></div>
+          <div className="lightt-shape lightt-shape-1"></div>
+          <div className="lightt-shape lightt-shape-4"></div>
         </div>
         
         <div className="section-header position-relative z-3 text-center mb-5">

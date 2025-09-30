@@ -103,7 +103,7 @@
   z-index: 1;
 }
 
-.light-shape {
+.lightt-shape {
   position: absolute;
   border-radius: 50%;
   opacity: 0.1;
@@ -112,12 +112,12 @@
   transition: opacity 0.5s ease, filter 0.5s ease;
 }
 
-.process:hover .light-shape {
+.process:hover .lightt-shape {
   opacity: 0.15;
   filter: blur(12px);
 }
 
-.light-shape-1 {
+.lightt-shape-1 {
   width: min(400px, 40vw);
   height: min(400px, 40vw);
   background: #0e81b6;
@@ -126,10 +126,10 @@
   animation-delay: 0s;
 }
 
-.light-shape-4 {
+.lightt-shape-4 {
   width: min(350px, 35vw);
   height: min(350px, 35vw);
-  background: #74531a;
+  background: #2686ac;
   bottom: 2%;
   right: 20%;
   animation-delay: -7s;
