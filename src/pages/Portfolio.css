@@ -977,61 +977,38 @@ html {
   }
 }
 
-/* RESPONSIVE DESIGN BREAKPOINTS */
-
-/* Extra Large Devices (1400px and up) */
-@media (min-width: 1400px) {
+@media (max-width: 1399px) and (min-width: 1200px) {
   .portfolio-work-visual {
-    height: 800px;
-    width: 750px;
+    height: 650px;
+    width: 600px;
   }
   
   .portfolio-work-title {
-    font-size: 5rem;
-  }
-  
-  .container-fluid {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-/* Large Devices (992px to 1199px) */
-@media (max-width: 1199px) and (min-width: 992px) {
-  .portfolio-work-visual {
-    height: 600px;
-    width: 550px;
-  }
-  
-  .portfolio-work-title {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
   
   .tech-overlay {
-    width: 250px;
+    width: 240px;
     height: 180px;
-  }
-  
-  .code-editor {
-    margin-left: 15%;
   }
 }
 
-/* Medium Devices (768px to 991px) */
-@media (max-width: 991px) and (min-width: 768px) {
+/* Tablet Landscape (1024px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1024px) {
+  /* Hero Section */
   .portfolio-work-section {
     padding: 3rem 0;
   }
   
   .portfolio-work-visual {
-    height: 500px;
+    height: 550px;
     width: 100%;
-    max-width: 500px;
-    margin-top: 3rem;
+    max-width: 550px;
+    margin-top: 2rem;
   }
   
   .portfolio-work-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     text-align: center;
   }
   
@@ -1049,39 +1026,210 @@ html {
     justify-content: center;
   }
   
-  .portfolio-work-stats {
+  .portfoliio-workk-staats {
     justify-content: center;
   }
   
-  .tech-overlay {
-    position: static;
-    margin: 2rem auto 0;
-    width: 100%;
-    max-width: 350px;
+  .portfoliio-workk-staats .staat-nummber {
+    font-size: 2.2rem;
   }
   
+  .portfoliio-workk-staats .staat-labbel {
+    font-size: 1.2rem;
+  }
+  
+   .tech-overlay {
+    display: none !important;
+  }
   .code-editor {
-    margin-left: 0;
+    display: none !important;
+  }
+  .tech-cards {
+    display: none !important;
   }
   
   .tech-cards {
     display: none;
   }
   
+  /* Projects Section */
   .project-card {
-    height: 500px; /* Adjusted for tablet */
-    
+    height: auto;
+    min-height: 550px;
+    margin-right: 0;
+  }
+  
+  .project-image {
+    height: 300px;
+  }
+  
+  .project-info {
+    padding: 1.5rem;
+    height: auto;
+    min-height: 250px;
+  }
+  
+  .project-title {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .description-line {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+/* Tablet Portrait (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  /* Hero Section */
+  .portfolio-work-section {
+    padding: 3rem 0;
+  }
+  
+  .portfolio-work-content {
+    padding: 0 2rem !important;
+  }
+  
+  .portfolio-work-visual {
+    height: 500px;
+    width: 100%;
+    max-width: 500px;
+    margin: 3rem auto 0;
+  }
+  
+  .portfolio-work-badge {
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .portfolio-work-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  .title-word {
+    margin-right: 0.2em;
+  }
+  
+  .portfolio-work-subtitle {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .typing-text {
+    font-size: 1.25rem;
+  }
+  
+  .portfolio-work-description {
+    text-align: center;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+  }
+  
+  .portfolio-work-buttons {
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .cta-button {
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+  }
+  
+  .portfoliio-workk-staats {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+  
+  .portfoliio-workk-staats .staat-iteem {
+    align-items: center;
+  }
+  
+  .portfoliio-workk-staats .staat-nummber {
+    font-size: 2rem;
+    margin-left: 0;
+  }
+  
+  .portfoliio-workk-staats .staat-labbel {
+    font-size: 1.1rem;
+    margin-left: 0;
+  }
+  
+  .tech-mockup {
+    height: 100%;
+  }
+  
+  .tech-overlay {
+    display: none !important;
+  }
+  .code-editor {
+    display: none !important;
+  }
+  .tech-cards {
+    display: none !important;
+  }
+  
+  .scroll-indicator {
+    bottom: 1rem;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    padding: 60px 0;
   }
   
   .section-title {
     font-size: 2.5rem;
   }
+  
+  .section-subtitle {
+    font-size: 1.15rem;
+    padding: 0 1.5rem;
+  }
+  
+  .project-card {
+    height: auto;
+    min-height: 500px;
+    margin-right: 0;
+  }
+  
+  .project-image {
+    height: 280px;
+  }
+  
+  .project-info {
+    padding: 1.75rem;
+    height: auto;
+    min-height: 220px;
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  .project-title::after {
+    width: 120px;
+  }
+  
+  .description-line {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 }
 
-/* Small Devices (576px to 767px) */
+/* Mobile Landscape (576px - 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
+  /* Hero Section */
   .portfolio-work-section {
     padding: 2rem 0;
+  }
+  
+  .portfolio-work-content {
+    padding: 0 1.5rem !important;
   }
   
   .portfolio-work-visual {
@@ -1090,14 +1238,27 @@ html {
     margin-top: 2rem;
   }
   
+  .portfolio-work-badge {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  
   .portfolio-work-title {
     font-size: 2.5rem;
     text-align: center;
+    margin-bottom: 1rem;
   }
   
   .portfolio-work-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .typing-text {
+    font-size: 1.15rem;
   }
   
   .portfolio-work-description {
@@ -1107,51 +1268,46 @@ html {
   }
   
   .portfolio-work-buttons {
-    justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
   }
   
   .cta-button {
     width: 100%;
     max-width: 280px;
     justify-content: center;
-    padding: 0.8rem 1.5rem;
+    padding: 0.85rem 1.5rem;
   }
   
-  .portfolio-work-stats {
+  .portfoliio-workk-staats {
     justify-content: space-around;
-    text-align: center;
+    gap: 1.5rem;
   }
   
-  .portfolio-work-stats .stat-number {
+  .portfoliio-workk-staats .staat-iteem {
+    align-items: center;
+  }
+  
+  .portfoliio-workk-staats .staat-nummber {
     font-size: 1.8rem;
+    margin-left: 0;
   }
   
-  .portfolio-work-stats .stat-label {
-    font-size: 1.1rem;
+  .portfoliio-workk-staats .staat-labbel {
+    font-size: 1rem;
+    margin-left: 0;
   }
   
-  .tech-overlay {
-    display: none;
-  }
-  
+  .tech-overlay,
   .tech-cards {
     display: none;
   }
   
-  .project-card {
-    height: 450px; /* Adjusted for mobile */
-    
-  }
-  
-  .project-image {
-    height: 25%; /* Adjusted for mobile */
-  }
-  
-  .project-info {
-    height: 75%; /* Adjusted for mobile */
+  /* Projects Section */
+  .projects-section {
+    padding: 50px 0;
   }
   
   .section-title {
@@ -1160,44 +1316,42 @@ html {
   
   .section-subtitle {
     font-size: 1.1rem;
-    padding: 0 1rem;
   }
   
-  .projects-section {
-    padding: 60px 0;
+  .project-card {
+    height: auto;
+    min-height: 480px;
+    margin-right: 0;
+    margin-left: 0;
   }
   
-  .gallery-nav.prev {
-    left: 1rem;
+  .project-image {
+    height: 250px;
   }
   
-  .gallery-nav.next {
-    right: 1rem;
+  .project-info {
+    padding: 1.5rem;
+    min-height: 230px;
   }
   
-  .gallery-close {
-    top: 1rem;
-    right: 1rem;
+  .project-title {
+    font-size: 1.35rem;
   }
   
-  .gallery-info {
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    transform: none;
-    max-width: none;
-    padding: 0.8rem 1rem;
+  .description-line {
+    font-size: 0.95rem;
   }
 }
 
-/* Extra Small Devices (up to 575px) */
+/* Mobile Portrait (up to 575px) */
 @media (max-width: 575px) {
+  /* Hero Section */
   .portfolio-work-section {
     padding: 1.5rem 0;
   }
   
   .portfolio-work-content {
-    padding: 0 1rem;
+    padding: 0 1rem !important;
   }
   
   .portfolio-work-visual {
@@ -1209,19 +1363,25 @@ html {
   .portfolio-work-badge {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
-    margin-bottom: 1.5rem;
+    margin: 0 auto 1.5rem;
   }
   
   .portfolio-work-title {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .title-word {
+    margin-right: 0.15em;
   }
   
   .portfolio-work-subtitle {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 1.5rem;
+    height: 1.5rem;
   }
   
   .typing-text {
@@ -1233,10 +1393,10 @@ html {
     text-align: center;
     margin-bottom: 1.5rem;
     padding: 0 0.5rem;
+    line-height: 1.5;
   }
   
   .portfolio-work-buttons {
-    justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
@@ -1247,14 +1407,14 @@ html {
     width: 100%;
     max-width: 250px;
     justify-content: center;
-    padding: 0.7rem 1.2rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
   }
   
   .portfoliio-workk-staats {
     justify-content: space-around;
-    text-align: center;
     gap: 1rem;
+    flex-wrap: wrap;
   }
   
   .portfoliio-workk-staats .staat-iteem {
@@ -1263,64 +1423,25 @@ html {
   
   .portfoliio-workk-staats .staat-nummber {
     font-size: 1.5rem;
+    margin-left: 0;
   }
   
   .portfoliio-workk-staats .staat-labbel {
     font-size: 0.9rem;
+    margin-left: 0;
   }
   
-  .tech-overlay {
-    display: none;
+  .tech-mockup {
+    height: 100%;
   }
   
+  .tech-overlay,
   .tech-cards {
     display: none;
   }
   
   .shaape {
     display: none;
-  }
-  
-  .project-card {
-    height: 400px;
-     margin-left: 12px !important;/* Adjusted for extra small devices */
-  }
-  
-  .project-image {
-    height: 63%; /* Adjusted for extra small devices */
-  }
-  
-  .project-info {
-    
-    height: 37% ;
-     /* Adjusted for extra small devices */
-  }
-  
-  .project-title {
-    font-size: 1.1rem;
-  }
-  
-  .project-subtitle {
-    font-size: 0.85rem;
-  }
-  
-  .project-description-line {
-    font-size: 0.8rem;
-  }
-  
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .section-subtitle {
-    font-size: 1rem;
-    padding: 0 1rem;
-    margin-bottom: 3rem;
-  }
-  
-  .projects-section {
-    padding: 40px 0;
   }
   
   .scroll-indicator {
@@ -1331,66 +1452,105 @@ html {
     font-size: 0.7rem;
   }
   
-  .scroll-mouse {
-    width: 20px;
-    height: 32px;
+  /* Projects Section */
+  .projects-section {
+    padding: 40px 0;
   }
   
-  .scroll-wheel {
-    width: 2px;
-    height: 6px;
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
-  .gallery-nav {
-    width: 40px;
-    height: 40px;
+  .section-title {
+    font-size: 1.9rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .section-subtitle {
     font-size: 1rem;
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
   }
   
-  .gallery-nav.prev {
-    left: 0.5rem;
+  .project-card {
+    height: auto;
+    min-height: 450px;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
   
-  .gallery-nav.next {
-    right: 0.5rem;
+  .project-image {
+    height: 220px;
   }
   
-  .gallery-close {
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 40px;
-    height: 40px;
+  .project-info {
+    padding: 1.25rem;
+    min-height: 230px;
+  }
+  
+  .project-title {
     font-size: 1.2rem;
+    line-height: 1.3;
   }
   
-  .gallery-info {
-    bottom: 0.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
-    transform: none;
-    max-width: none;
-    padding: 0.6rem 0.8rem;
-    border-radius: 15px;
-  }
-  
-  .gallery-counter {
-    font-size: 0.8rem;
-  }
-  
-  .gallery-title {
-    font-size: 1rem;
-  }
-  
-  .gallery-description {
-    font-size: 0.8rem;
+  .project-title::after {
+    width: 80px;
+    height: 3px;
   }
   
   .description-line {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .image-count {
     font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
   }
 }
 
-/* Landscape orientation adjustments for mobile */
+/* Extra Small Mobile (up to 375px) */
+@media (max-width: 375px) {
+  .portfolio-work-title {
+    font-size: 1.75rem;
+  }
+  
+  .portfolio-work-visual {
+    height: 280px;
+  }
+  
+  .portfoliio-workk-staats .staat-nummber {
+    font-size: 1.3rem;
+  }
+  
+  .portfoliio-workk-staats .staat-labbel {
+    font-size: 0.85rem;
+  }
+  
+  .project-card {
+    min-height: 420px;
+  }
+  
+  .project-image {
+    height: 200px;
+  }
+  
+  .project-info {
+    padding: 1rem;
+    min-height: 220px;
+  }
+  
+  .project-title {
+    font-size: 1.1rem;
+  }
+  
+  .description-line {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape Mode Adjustments */
 @media (max-height: 600px) and (orientation: landscape) {
   .portfolio-work-section {
     padding: 1rem 0;
@@ -1414,26 +1574,122 @@ html {
     margin-bottom: 1rem;
   }
   
-  .portfolio-work-buttons {
-    margin-bottom: 1rem;
-  }
-  
-  .portfoliio-workk-staats {
-    gap: 1rem;
-  }
-  
   .scroll-indicator {
     display: none;
   }
 }
 
-/* High DPI / Retina Display Adjustments */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .tech-image,
-  .project-image img,
-  .gallery-image {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+/* Fix for order on mobile - Visual first, content second */
+@media (max-width: 1023px) {
+  .order-1 {
+    order: 1 !important;
+  }
+  
+  .order-2 {
+    order: 2 !important;
+  }
+  
+  .order-lg-1 {
+    order: 1 !important;
+  }
+  
+  .order-lg-2 {
+    order: 2 !important;
+  }
+}
+
+/* Fix for container fluid padding on mobile */
+@media (max-width: 767px) {
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Ensure min-vh-100 doesn't cause issues on mobile */
+@media (max-width: 767px) {
+  .min-vh-100 {
+    min-height: auto !important;
+    padding: 2rem 0;
+  }
+}
+
+/* Additional text overflow prevention */
+.project-description,
+.project-title,
+.portfolio-work-title,
+.section-title {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Grid spacing fixes */
+@media (max-width: 768px) {
+  .row.g-4 {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 1rem;
+  }
+  
+  .g-0 {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+  }
+}
+
+/* Column padding on small screens */
+@media (max-width: 767px) {
+  .col-sm-12 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Additional fixes for text overflow */
+.project-description {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.project-title {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ensure proper spacing in grid on all devices */
+.row.g-4 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .row.g-4 {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 1rem;
+  }
+}
+
+/* Fix for Bootstrap column padding on small screens */
+@media (max-width: 767px) {
+  .col-sm-12 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Hover effects adjustments for touch devices */
+@media (hover: none) {
+  .project-card:hover {
+    transform: none;
+  }
+  
+  .project-overlay {
+    opacity: 0;
+  }
+  
+  .project-card:active .project-overlay {
+    opacity: 1;
   }
 }
 

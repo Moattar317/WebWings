@@ -79,10 +79,11 @@ const Services = () => {
     }
   };
 
-  // Check if device is mobile
+  // Check if device is mobile OR tablet
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      // Consider everything below 1024px as mobile/tablet view
+      setIsMobile(window.innerWidth <= 1024);
     };
     
     checkMobile();
@@ -134,17 +135,15 @@ const Services = () => {
 
   const handleServiceClick = (index) => {
     if (isMobile) {
-      // Toggle mobile service detail
+      // Toggle mobile service detail for both mobile AND tablet
       setMobileSelectedService(mobileSelectedService === index ? null : index);
     } else {
-      // Desktop behavior
+      // Desktop behavior - only for screens larger than 1024px
       setActiveService(index);
     }
   };
 
   const renderMobileServiceDetail = (service, index) => {
-    if (mobileSelectedService !== index) return null;
-
     return (
       <div 
         className="mobile-service-detail"
@@ -237,83 +236,98 @@ const Services = () => {
         </div>
 
         <div className="services-display">
-          <div className="service-selector">
-            {services.map((service, index) => (
-              <React.Fragment key={index}>
-                <div
-                  data-index={index}
-                  data-description={service.description}
-                  ref={(el) => (itemsRef.current[index] = el)}
-                  className={`selector-item ${
-                    !isMobile && index === activeService ? 'active' : ''
-                  } ${
-                    isMobile && index === mobileSelectedService ? 'mobile-active' : ''
-                  } ${visibleItems.includes(index) ? 'visible' : ''}`}
-                  onClick={() => handleServiceClick(index)}
-                  style={{ '--service-color': service.color }}
-                >
-                  <div className="selector-icon">
-                    <img src={service.icon} alt={service.title} />
-                  </div>
-                  <span>{service.title}</span>
-                  <div className="selector-highlight"></div>
-                </div>
-                
-                {/* Mobile service detail appears below each clicked service */}
-                {isMobile && renderMobileServiceDetail(service, index)}
-              </React.Fragment>
-            ))}
+         <div className="service-selector">
+  {services.map((service, index) => (
+    <div key={index} className="service-item-wrapper">
+      <div
+        data-index={index}
+        data-description={service.description}
+        ref={(el) => (itemsRef.current[index] = el)}
+        className={`selector-item ${
+          !isMobile && index === activeService ? 'active' : ''
+        } ${
+          isMobile && index === mobileSelectedService ? 'mobile-active' : ''
+        } ${visibleItems.includes(index) ? 'visible' : ''}`}
+        onClick={() => handleServiceClick(index)}
+        style={{ '--service-color': service.color }}
+      >
+        <div className="selector-icon">
+          <img src={service.icon} alt={service.title} />
+        </div>
+        <span>{service.title}</span>
+        <div className="selector-highlight"></div>
+        
+        {/* Arrow indicator */}
+        {isMobile && (
+          <div className="mobile-arrow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
+        )}
+      </div>
+      
+      {/* Mobile service detail appears below each clicked service - works for both mobile AND tablet */}
+      {isMobile && mobileSelectedService === index && (
+        <div className="mobile-service-detail-container">
+          {renderMobileServiceDetail(service, index)}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
 
-          {/* Desktop service showcase - hidden on mobile */}
-          <div 
-            className="service-showcase"
-            style={{ 
-              '--active-color': services[activeService].color,
-              borderColor: services[activeService].color 
-            }}
-          >
-            <div className="showcase-content">
-              <div className="showcase-header">
-                <div className="service-icon-large">
-                  <div className="icon-backdrop"></div>
-                  <img src={services[activeService].icon} alt={services[activeService].title} />
-                </div>
-                <div className="service-titles">
-                  <h3>{services[activeService].title}</h3>
-                  <h4>{services[activeService].subtitle}</h4>
-                </div>
-              </div>
-              
-              <p className="service-description">{services[activeService].description}</p>
-              
-              <div className="service-features-grid">
-                {services[activeService].features.map((feature, idx) => (
-                  <div key={idx} className="feature-item">
-                    <div className="feature-check">
-                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                        <path d="M1 5L5 9L13 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="showcase-visual">
-              <div className="visual-container">
-                <div 
-                  className="visual-element" 
-                  style={{ backgroundColor: services[activeService].color }}
-                >
-                  <div className="visual-inner">
+          {/* Desktop service showcase - hidden on mobile AND tablet */}
+          {!isMobile && (
+            <div 
+              className="service-showcase"
+              style={{ 
+                '--active-color': services[activeService].color,
+                borderColor: services[activeService].color 
+              }}
+            >
+              <div className="showcase-content">
+                <div className="showcase-header">
+                  <div className="service-icon-large">
+                    <div className="icon-backdrop"></div>
                     <img src={services[activeService].icon} alt={services[activeService].title} />
                   </div>
+                  <div className="service-titles">
+                    <h3>{services[activeService].title}</h3>
+                    <h4>{services[activeService].subtitle}</h4>
+                  </div>
+                </div>
+                
+                <p className="service-description">{services[activeService].description}</p>
+                
+                <div className="service-features-grid">
+                  {services[activeService].features.map((feature, idx) => (
+                    <div key={idx} className="feature-item">
+                      <div className="feature-check">
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                          <path d="M1 5L5 9L13 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="showcase-visual">
+                <div className="visual-container">
+                  <div 
+                    className="visual-element" 
+                    style={{ backgroundColor: services[activeService].color }}
+                  >
+                    <div className="visual-inner">
+                      <img src={services[activeService].icon} alt={services[activeService].title} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

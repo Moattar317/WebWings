@@ -483,22 +483,34 @@
 .cta-button:hover .button-hover-effect {
   left: 100%;
 }
-
-/* Responsive Design */
-@media (max-width: 968px) {
+/* Tablet-specific styles (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about {
+    padding: 4rem 0;
+  }
+  
   .about-container {
-    padding: 0 1.5rem;
+    padding: 0 2rem;
   }
   
   .about-content-grid {
-    display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
+    margin-bottom: 4rem;
   }
   
   .about-cardds {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .about-cardd {
+    padding: 2rem;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
   }
   
   .about-cardd:nth-child(3) {
@@ -507,43 +519,171 @@
     justify-self: auto;
   }
   
+  .cardd-icon {
+    width: 60px;
+    height: 60px;
+    padding: 12px;
+    flex-shrink: 0;
+  }
+  
+  .cardd-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cardd-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
   .about-visual {
     order: -1;
-    max-height: 400px;
+    max-height: 450px;
+    width: 100%;
   }
   
   .giif-container {
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 450px;
     margin: 0 auto;
+  }
+  
+  .sectioon-header h2 {
+    font-size: 2.5rem;
+  }
+  
+  .sectioon-header p {
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 640px) {
+/* Mobile styles (below 768px) */
+@media (max-width: 768px) {
   .about {
-    padding: 6rem 0;
+    padding: 3rem 0;
   }
   
   .about-container {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+  }
+  
+  .sectioon-header {
+    margin-bottom: 3rem;
+  }
+  
+  .sectioon-header h2 {
+    font-size: 2rem;
+  }
+  
+  .sectioon-header p {
+    font-size: 1rem;
+  }
+  
+  .about-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .about-cardds {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   
   .about-cardd {
     padding: 1.5rem;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+  }
+  
+  .about-cardd:nth-child(3) {
+    grid-column: auto;
+    max-width: 100%;
+    justify-self: auto;
   }
   
   .cardd-icon {
-    margin: 0 auto;
-    width: 70px;
-    height: 70px;
+    margin: 0 auto 1rem;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cardd-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cardd-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .about-visual {
+    order: -1;
+    max-height: 350px;
   }
   
   .giif-container {
-    max-width: 320px;
-    max-height: 320px;
+    max-width: 100%;
+    max-height: 350px;
+  }
+  
+  .about-statement {
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+  }
+  
+  .statement-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .statement-content p {
+    font-size: 1rem;
+  }
+  
+  .ctta-button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile (below 480px) */
+@media (max-width: 480px) {
+  .about {
+    padding: 2.5rem 0;
+  }
+  
+  .about-container {
+    padding: 0 1rem;
+  }
+  
+  .sectioon-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .about-cardd {
+    padding: 1.25rem;
+  }
+  
+  .cardd-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cardd-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .cardd-content p {
+    font-size: 0.9rem;
+  }
+  
+  .giif-container {
+    max-height: 300px;
+  }
+  
+  .about-statement {
+    padding: 2rem 1rem;
   }
 }
