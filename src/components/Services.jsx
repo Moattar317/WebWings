@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Services.css';
-import i1 from "../assets/s1.png";
-import i2 from "../assets/s3.png";
-import i3 from "../assets/s2.png";
-import i4 from "../assets/s4.png";
-import i5 from "../assets/s6.png";
-import i6 from "../assets/s7.png";
+import i1 from "../assets/s1.webp";
+import i2 from "../assets/s3.webp";
+import i3 from "../assets/s2.webp";
+import i4 from "../assets/s4.webp";
+import i5 from "../assets/s6.webp";
+import i6 from "../assets/s7.webp";
 
 const Services = () => {
   const [activeService, setActiveService] = useState(0);

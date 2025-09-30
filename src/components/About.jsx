@@ -4,9 +4,9 @@ import './About.css';
 
 
 // Import your icon images
-import missionIcon from '../assets/ou.png'; // Replace with your actual path
-import visionIcon from '../assets/ou.png';   // Replace with your actual path
-import whyUsIcon from '../assets/ou.png';     // Replace with your actual path
+import missionIcon from '../assets/ou.webp'; // Replace with your actual path
+import visionIcon from '../assets/ou.webp';   // Replace with your actual path
+import whyUsIcon from '../assets/ou.webp';     // Replace with your actual path
 import aboutGif from '../assets/g5.gif';   // Replace with your actual GIF path
 
 const About = () => {

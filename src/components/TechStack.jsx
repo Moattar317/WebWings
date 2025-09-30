@@ -10,12 +10,12 @@ import l6 from '../assets/b5.png';
 import l7 from '../assets/d2.png';
 import l8 from '../assets/d3.png';
 import l9 from '../assets/d5.png';
-import l10 from '../assets/b1.png';
+import l10 from '../assets/b1.webp';
 import a1 from '../assets/m5.png';
 import a2 from '../assets/m4.png';  
 import a3 from '../assets/b7.png';
 import a4 from '../assets/m1.png';
-import a5 from '../assets/b2.png';
+import a5 from '../assets/b2.webp';
 import a6 from '../assets/f5.png';
 import a7 from '../assets/d4.png';
 import a8 from '../assets/d2.png';
@@ -59,7 +59,7 @@ const TechStack = () => {
             {duplicatedTechs.map((tech, index) => (
               <div key={index} className="tech-item">
                 <div className="tech-logo">
-                  <img src={tech.logo} alt={tech.name} />
+                  <img src={tech.logo} loading="lazy" alt={tech.name} />
                 </div>
                 <span className="tech-name">{tech.name}</span>
               </div>
